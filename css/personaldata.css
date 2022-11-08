@@ -1,0 +1,48 @@
+.dataP{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50%;
+    place-content: center;
+    margin-top: 100px;
+}
+
+.form-user{
+    width: 500px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 5%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width:900px) {
+
+    .dataP{
+        grid-template-columns: 60%;
+    }
+    
+}
+
+
+@media screen and (max-width:700px) {
+
+    .dataP{
+        grid-template-columns: 70%;
+    }
+    
+}
+
+@media screen and (max-width:450px) {
+
+    .dataP{
+        grid-template-columns: 75%;
+    }
+    
+}
+
+@media screen and (max-width:300px) {
+
+    .dataP{
+        grid-template-columns: 82%;
+    }
+    
+}

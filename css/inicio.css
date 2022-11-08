@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: Poppins;
+
+}
+:root{
+    --body-color: white;
+    --primary-color: red;
+    --secondary-color: orange;
+    --background-color: #b8b4b1;
+}
+
+/*--------------------------------------------------PRODUCTOS--------------------------------------------------*/
+
+.barrita{
+     background:var(--body-color);
+     padding: 12px;
+     margin-top: 20px;
+    text-align: center;
+    border-top: 1px solid var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+.productos{
+    display: grid;
+    margin-top: 100px;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+}
+.pedaso{
+    text-align: center;
+    color: var(--body-color);
+    border-radius: 10px;
+    margin: 1rem;
+    width: 70%;
+    padding: 3%;
+    -webkit-box-shadow: 0px 4px 13px -1px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 4px 13px -1px rgba(0,0,0,0.75);
+box-shadow: 0px 4px 13px -1px rgba(0,0,0,0.75);
+}
+/* .pedaso span{
+    font-size: 20px;
+    color: red;
+    text-shadow: 0 1px 2px black;
+    font-weight: bold;
+    -webkit-text-stroke: 1px black;
+} */
+#reservar{
+    margin: 4em 0;
+}
+
+::selection{
+    background-color:var(--background-color);
+    color: var(--body-color);
+}
+
+.btn-rsv{
+    width: 250px;
+    height: 70px;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 20px;
+    border: var(--primary-color) 1px solid ;
+    transition: .1s;
+    transition-timing-function: ease-in-out;
+}
+.btn-rsv:hover{
+    transition: all .1s;
+    cursor: pointer;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+    color: var(--primary-color);
+}
+
+/*--------------------------------------------------RECETAS--------------------------------------------------*/
+
+.recetas{
+    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    margin-bottom: 3em;
+    margin-top: 100px;
+}
+.receta{
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px;
+    justify-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/bg_recetas.jpg);
+    width: 60%;
+    margin: 1rem;
+    -webkit-box-shadow: 0px 4px 13px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 13px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 13px -1px rgba(0,0,0,0.75);
+}
+.receta h1{
+    color: var(--body-color);
+    font-size: 1.3rem;
+}
+.receta img{
+    height: 200px;
+    width: 250px;
+    border-radius: 20%;
+    border: 2px solid var(--secondary-color);
+    margin-bottom: 1rem;
+}
+.descripcion{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 3px;
+    margin-bottom: 8px;
+}
+.precio{
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: rgb(99, 206, 85);
+    text-shadow: 1px .5px  rgb(63, 83, 63);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+.re{
+    background-color: transparent;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    padding: 4px;
+    border: 1px var(--secondary-color) solid;
+    border-radius: 10px;
+    transition: all .3s;
+}
+.re:hover{
+    background-color: rgba(255, 221, 0, 0.912);
+    color: rgb(255, 255, 255);
+}
+
+
+/*--------------------------------------------------MISION--------------------------------------------------*/
+.nmivi{
+    color: black;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.misionvision{
+    color: black;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 25%;
+    text-align: justify;
+    gap: 70px;
+    font-size: 1.6rem;
+    place-content: center;
+    margin-bottom: 50px;
+}
+.mision{
+    border: var(--primary-color) solid 1px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.vision{
+    border: var(--primary-color) solid 1px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.mision h1{
+    text-align: center;
+}
+.vision h1{
+    text-align: center;
+}
+
+.nreceta h1{
+    font-size: 2rem;
+}
+
+
+
+.nmivi h1{
+    font-size: 2rem;
+}
+
+
+
+.panal1{
+    width: 150px;
+}
+
+.carrito{
+    background:var(--fondo);
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    padding: 1px;
+    border-radius: 10px;
+    transition: all .5s;
+    
+}
+
+.carousel{
+    margin-top: 60px;
+    padding: 20px;
+}
+
+.carousel-inner{
+    border-radius: 20px;
+}
+
+.carrito:hover{
+    transform: scale(.9);
+    background-color: white;
+    color: black;
+}
+
+.huevos{
+    margin-top: 120px;
+    margin-bottom: 50px;
+   
+}
+
+center .reservbutton{
+    background-color: orange;
+    width: 300px;
+    margin-top: 2500px;
+    padding: 25px;
+    border-radius: 30px;
+    font-size: 22px;
+    text-decoration: none;
+    color: white;
+}
+
+.reservbutton:hover{
+    background-color: transparent;
+    transition: all .5s;
+    color: white;
+    transform: scale(1.2);
+    cursor: pointer
+}
+
+/*--------------------------------------------------<|"RESPONSIVE"|>--------------------------------------------------*/
+@media (max-width:950px) {
+    .receta img{
+        width: 240px;
+        height: 190px;
+    }
+}
+@media (max-width:900px) {
+    .receta img{
+        width: 230px;
+        height: 190px;
+    }
+}
+@media (max-width:850px) {
+    .receta img{
+        width: 210px;
+        height: 180px;
+    }
+}
+@media (max-width:800px) {
+    .receta img{
+        width: 200px;
+        height: 160px;
+    }
+}
+@media (max-width:750px) {
+    .receta img{
+        width: 190px;
+        height: 150px;
+    }
+    /*---*/
+    .pedaso{
+        font-size: 15px;
+    }
+}
+@media (max-width:700px) {
+    .receta img{
+        width: 180px;
+        height: 140px;
+    }
+    .receta h1{
+        font-size: 20px;
+    }
+    /*---*/
+    .pedaso{
+        font-size: 15px;
+    }
+    /*---*/
+    .misionvision{
+        font-size: 20px;
+    }
+}
+@media (max-width:650px) {
+    .receta img{
+        width: 160px;
+        height: 120px;
+    }
+    .receta h1{
+        font-size: 20px;
+    }
+}
+@media (max-width:600px) {
+    .receta img{
+        width: 150px;
+        height: 110px;
+    }
+    .receta h1{
+        font-size: 20px;
+    }
+    /*---*/
+    .pedaso{
+        font-size: 15px;
+    }
+}
+@media (max-width:550px) {
+    .recetas{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .receta img{
+        width: 180px;
+        height: 150px;
+    }
+    .receta h1{
+        font-size: 20px;
+    }
+    /*---*/
+    .productos{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    /*---*/
+    .misionvision{
+        display: grid;
+        grid-template-columns: 90%;
+        gap: 50px;
+    }
+}
+@media (max-width:500px) {
+    .recetas{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .receta img{
+        width: 160px;
+        height: 130px;
+    }
+    .receta h1{
+        font-size: 18px;
+    }
+}
+@media (max-width:450px) {
+    .recetas{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .receta img{
+        width: 150px;
+        height: 120px;
+    }
+    .receta h1{
+        font-size: 16px;
+    }
+    /*---*/
+    .misionvision{
+        font-size: 18px;
+        gap: 40px;
+    }
+}
+@media (max-width:400px){
+    .pedaso{
+        font-size: 12px;
+    }
+}

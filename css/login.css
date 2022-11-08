@@ -1,0 +1,326 @@
+body{
+    max-height: 1000PX;
+    background-image: url(../images/huevos2.jpg);
+    background-size: cover;
+}
+
+/*CONTENEDOR DE LOS FORMULARIOS*/
+.form{
+    margin: 80px 0;
+    height: 630px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns:38% 38%;
+}
+
+/*LOGIN*/
+.login{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(202, 202, 202);
+    opacity: 90%;
+    border-right: 1px solid #b0b0b0;
+    height: 100%;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 0 1px 8px 1px rgba(0, 0, 0, 1);
+}
+.PollitoFutbol{
+    height: 210px;
+    margin-top: 25px;
+}
+.botonlogin{
+    margin: 8px 0;
+    color:white;
+    background-color: red;
+    width: 28%;
+    padding: 1px 0;
+    text-align: center;
+    font-size: 22px;
+    line-height: 28px;
+    height: 35px;
+    border: solid 2px white;
+    border-radius: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    transition: all .5s;
+}
+.botonlogin:hover{
+    transform: scale(0.9);
+}
+
+/*SIGNUP*/
+.register{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(202, 202, 202);
+    opacity: 90%;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 0 1px 8px 1px rgba(0, 0, 0, 1);
+}
+.PollitoHuevo{
+    height: 210px;
+    margin-top: 25px;
+}
+.botonregister{
+   margin: 8px 0;
+    color:red;
+    background-color: white;
+    width: 34%;
+    padding: 1px 0;
+    text-align: center;
+    font-size: 22px;
+    height: 35px;
+    line-height: 28px;
+    border: solid 2px red;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: all .5s;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.botonregister:hover{
+    transform: scale(0.9);
+}
+.terminos{
+    align-content: center;
+}
+.terminos a{
+    font-size: 9px;
+}
+
+/*Clases generales*/
+h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    text-shadow: 1px 1px #9c9c9c;
+    font-size: 32px;
+}
+input[type="text"]{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: none;
+    font-size: 14px;
+    padding: 3px;
+    width: 50%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid rgb(104, 103, 103);
+    background: none;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+input[type="email"]{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: none;
+    font-size: 14px;
+    padding: 3px;
+    width: 50%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid rgb(104, 103, 103);
+    background: none;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+input[type="password"]{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: none;
+    font-size: 14px;
+    padding: 3px;
+    width: 50%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid rgb(104, 103, 103);
+    background: none;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.olvidaste{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: white;
+    font-size: 14px;
+}
+.olvidaste:active{
+    color: #ff9e4a;
+}
+
+/*Responsive*/
+@media screen and (max-width: 1100px) {
+     .form{
+        margin-top: 200px;
+        margin-bottom: 200px;
+        grid-template-columns: 44% 44%;
+    }
+}
+
+
+@media screen and (max-width: 920px) {
+
+    .form{
+        margin-top: 200px;
+        margin-bottom: 200px;
+        grid-template-columns: 48% 48%;
+    }
+
+    .botonlogin{
+        width: 33%;
+    }
+
+    .botonregister{
+        width: 40%;
+    }
+    
+}
+
+
+    
+
+
+
+
+
+
+
+@media screen and (max-width:600px) {
+    .form{
+        margin-top: 80px;
+        grid-template-columns: 90%;
+       margin-bottom: 80px;
+        
+    }
+    
+   
+
+    body{
+        overflow: auto;
+    }
+
+    .login{
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        border-bottom: 1px solid #b0b0b0;
+    }
+
+    .register{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .PollitoFutbol{
+        display: none;
+    }
+
+    .PollitoHuevo{
+        display: none;
+    }
+
+    
+    .botonlogin{
+        width: 25%;
+        margin-bottom: 1px;
+        margin-top: 1px;
+        font-size: 15px;
+    }
+
+    .botonregister{
+        width: 25%;
+        margin-bottom: 1px;
+        margin-top: 1px;
+        font-size: 15px;
+    }
+
+    .enlaces{
+        margin-bottom: 1px;
+        margin-bottom: 1px;
+    }
+    .facebook{
+        padding: 0 10px;
+    }
+    .instagram{
+        padding: 0 10px;
+    }
+    .twitter{
+        padding: 0 10px;
+    }
+}
+
+
+
+@media screen and (max-width:375px){
+    .form{
+        grid-template-columns: 80%;
+        transform: translateY(6%);
+    }
+    body{
+        overflow: auto;
+    }
+
+    .login{
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .PollitoFutbol{
+        display: none;
+    }
+
+    .PollitoHuevo{
+        display: none;
+    }
+    .olvidaste{
+        font-size: 12px;
+    }
+
+    
+    .botonlogin{
+        width: 35%;
+        margin-bottom: 1px;
+        margin-top: 1px;
+    }
+
+    .botonregister{
+        width: 45%;
+        margin-bottom: 1px;
+        margin-top: 1px;
+    }
+
+    .enlaces{
+        margin-bottom: 1px;
+        margin-bottom: 1px;
+        font-size: 20px;
+        }
+    }
+    .facebook{
+        padding: 0 10px;
+    }
+    .instagram{
+        padding: 0 10px;
+    }
+    .twitter{
+        padding: 0 10px;
+    }
+    @media screen and (max-width:375px){
+ 
+        h1{
+            font-size: 29px;
+        }
+    
+        .botonlogin{
+            font-size: 15px;
+            height: 25px;
+        }
+        .botonregister{
+        font-size: 15px;
+        height: 25px;
+    }
+}

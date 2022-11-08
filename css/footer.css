@@ -1,0 +1,17 @@
+:root{
+    --fondo:linear-gradient(#fdfdfd, #dbdada);
+}
+footer{
+    background:var(--fondo);
+    color: black;
+    padding: 35px 20px 20px 20px;
+    border-top: 1px red solid;
+}
+
+.Contenido{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
