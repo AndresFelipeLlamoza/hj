@@ -94,6 +94,9 @@ if (!isset($_SESSION['usuario'])) {
         <h2 class="title-header">Estadísticas</h2>
         <hr>
         <br>
+        <div>
+            <a class="linkrep" href="/hj/model/reportreserv.php" target="_blank">Generar reporte</a>
+        </div>
         <!--GRAFICAS-->
         <div class="card-body">
             <div class="row">
