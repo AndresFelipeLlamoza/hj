@@ -1,5 +1,11 @@
 <?php
 require('fpdf.php');
+include ('conexion.php');
+$consulta = "SELECT * FROM reservas WHERE Estado ='Retirado'";
+$resultado = mysqli_query($conx, $consulta);
+$total=0;
+$consulta2 = "SELECT Producto, SUM(Cantidad) FROM reservas WHERE Estado='Retirado'";
+$resultado2 = mysqli_query($conx, $consulta2);
 
 class PDF extends FPDF
 {
@@ -30,7 +36,6 @@ function Header()
 // Pie de página
 function Footer()
 {
-    $this->Cell(70,40,'Ganancias totales:',0,0,'C');
     // Posición: a 1,5 cm del final
     $this->SetFillColor(255,140,0);
     $this->SetY(-15);
@@ -40,12 +45,7 @@ function Footer()
     $this->Cell(0,10,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
 }
 }
-include ('conexion.php');
-$consulta = "SELECT * FROM reservas WHERE Estado !='vigente'";
-$resultado = mysqli_query($conx, $consulta);
 
-$consulta2 = "SELECT Producto, SUM(Cantidad) FROM reservas WHERE Estado='Retirado'";
-$resultado2 = mysqli_query($conx, $consulta2);
 
 $pdf = new PDF();
 $pdf-> AliasNbPages();
@@ -57,14 +57,17 @@ $pdf->SetFont('Arial','',16);
 foreach ($conx -> query($consulta) as $row){
     
 
-    $pdf->Cell(65, 10, $row['Producto'], 1, 0, 'C', 0);
+    $pdf->Cell(65, 10,utf8_decode($row['Producto']) , 1, 0, 'C', 0);
     $pdf->Cell(20, 10, $row['Precio'], 1, 0, 'C', 0);
     $pdf->Cell(25, 10, $row['Cantidad'], 1, 0, 'C', 0);
     $pdf->Cell(20, 10, $row['Total'], 1, 0, 'C', 0);
     $pdf->Cell(30, 10, $row['Fecha'], 1, 0, 'C', 0);
     $pdf->Cell(30, 10, $row['Estado'], 1, 1, 'C', 0);
+    $total=$total+$row['Total'];
     
 }
+$pdf->Cell(70,40,'Ganancias totales: $',0,0,'C');
+$pdf->Cell(1,40,$total,0,0,'C');
     
 
 $pdf->Output();

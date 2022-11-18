@@ -95,8 +95,9 @@ if (!isset($_SESSION['usuario'])) {
         <hr>
         <br>
         <div>
-            <a class="linkrep" href="/hj/model/reportreserv.php" target="_blank">Generar reporte</a>
+            <a class="btn btn-info" href="/hj/model/reportreserv.php" target="_blank">Generar reporte</a>
         </div>
+        <br>
         <!--GRAFICAS-->
         <div class="card-body">
             <div class="row">
