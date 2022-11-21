@@ -16,6 +16,8 @@ $I = array(
     "/hj/images/bg_huevos3.jpg",
     "/hj/images/bg_huevos4.jpg"
 );
+$hoy=date('Y-m-d');
+$max=date('Y-m-d', strtotime($hoy.'+2 days'));
 ?>
 
 <!DOCTYPE html>
@@ -103,32 +105,41 @@ $I = array(
                         </div>
                         <div class="modal-body">
                             <center><input type="hidden" id="user_reserv" value="<?php echo $_SESSION['usuario'] ?>" readonly name="username"></center>
-                            <label class="form-label">Escoje tu producto</label>
-                            <select id="listproductos" class="form-select" name="product" required>
-                                <option value="0" selected disabled>Seleccione</option>
-                                <?php while ($list = mysqli_fetch_assoc($ok)) { ?>
-                                    <option value="<?php echo $list["Nombre"] ?>"><?php echo $list["Nombre"] ?></option>
-                                <?php } ?>
-                            </select>
+                            <div class="row align-items">
+                                <div class="col">
+                                    <label class="form-label">Escoje tu producto</label>
+                                    <select id="listproductos" class="form-select" name="product" required>
+                                        <option value="0" select hidden>Seleccione</option>
+                                        <?php while ($list = mysqli_fetch_assoc($ok)) { ?>
+                                        <option value="<?php echo $list["Nombre"] ?>"><?php echo $list["Nombre"] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label">Precio</label>
+                                    <select id="listprecios" class="form-control" onselect="calcular()" name="price">
+                                    </select>
+                                </div>
+                            </div>
                             <br>
-                            <label class="form-label">Precio</label>
-                            <select id="listprecios" class="form-control" onselect="calcular()" name="price">
-                            </select>
-                            <br>
-                            <label class="form-label">Panales</label>
-                            <input id="cantidad" type="number" name="amount" min="1" max="5" maxlength="1" oninput="calcular(); if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeypress="return rsv(event)" style="outline: none;" required>
-                            <br><br>
-                            <label class="form-label">Fecha</label>
-                            <br>
-                            <input class="form-control" type="date" name="date" min="<?php $hoy = date('Y-m-d');
-                                                                                        echo $hoy ?>" required>
-                            <br>
-                            <label class="label-control">Hora</label>
-                            <br>
-                            <input class="form-control" type="time" min="07:00" max="21:00" name="time" required>
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label">Panales</label>
+                                <div class="col-sm-10 col-md-2">
+                                    <input id="cantidad" type="number" class="form-control form-control-sm" name="amount" min="1" max="5" maxlength="1" oninput="calcular(); if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeypress="return rsv(event)" required>
+                                </div>
+                            </div>
+                            <div class="row align-items">
+                                <div class="col">
+                                    <label class="form-label">Fecha</label>
+                                    <input class="form-control" type="date" name="date" min="<?php echo $hoy?>" max="<?php echo $max?>" required>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label">Hora</label>
+                                    <input class="form-control" type="time" min="07:00" max="21:00" name="time" required>
+                                </div>
+                            </div>
                             <br>
                             <label class="form-label">Valor total</label>
-                            <br>
                             <h3>$<span id="total"></span></h3>
                         </div>
                         <div class="modal-footer">

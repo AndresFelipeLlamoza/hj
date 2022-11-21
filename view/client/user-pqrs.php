@@ -115,7 +115,7 @@ $ok=mysqli_query($conx,$query);
             </div>
             <div class="mb-3">
                 <label class="form-label">Teléfono</label>
-                <input id="tel" type="text" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" name="phone" onkeypress="return solonumeros(event)">
+                <input id="tel" type="number" maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" name="phone" onkeypress="return solonumeros(event)">
             </div>
             <div class="mb-3">
                 <label class="form-label">Mensaje</label>

@@ -141,8 +141,11 @@ $count3 = mysqli_fetch_assoc($check3);
                                 <li><b>Hora</b></li>
                                 <li><?php echo $row1["Hora"] ?></li>
                             </ul>
-                            <a href="../../model/cancel-reserv2.php?id=<?php echo $row1["idReserva"] ?>">
-                                <button type="button" class="w-100 btn btn-mb btn-danger cr">Cancelar</button>
+                            <a href="../../view/client/user-edit-reserv.php?id=<?php echo $row1["idReserva"]?>" style="text-decoration: none;">
+                                <button type="button" class="btn btn-mb btn-warning">Editar</button>
+                            </a>
+                            <a href="../../model/cancel-reserv2.php?id=<?php echo $row1["idReserva"]?>" style="text-decoration: none;">
+                                <button type="button" class="btn btn-mb btn-danger cr">Cancelar</button>
                             </a>
                         </div>
                     </div>

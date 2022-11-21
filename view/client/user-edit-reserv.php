@@ -1,17 +1,29 @@
 <?php
-include ("../model/conexion.php");
+include("../../model/conexion.php");
 session_start();
-if(!isset($_SESSION['usuario'])){
+if (!isset($_SESSION['usuario'])) {
     echo "<script>alert('Debes iniciar sesion');location='/hj/view/login.php';</script>";
     session_destroy();
     die();
 }
-$id=$_GET["id"];
-$rsv="SELECT * FROM reservas WHERE idReserva='$id'";
+$id = $_GET["id"];
+$rsv = "SELECT * FROM reservas WHERE idReserva='$id'";
+$ok = mysqli_query($conx, $rsv);
+//
+$np = "SELECT Producto AS nomp FROM reservas WHERE idReserva='$id'";
+$npq = mysqli_query($conx, $np);
+$npf = mysqli_fetch_assoc($npq);
+//
+$prd = "SELECT * FROM productos WHERE Nombre !='$npf[nomp]'";
+$ok2 = mysqli_query($conx, $prd);
+
+$hoy = date('Y-m-d');
+$max = date('Y-m-d', strtotime($hoy . '+2 days'));
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,115 +33,154 @@ $rsv="SELECT * FROM reservas WHERE idReserva='$id'";
     <link rel="stylesheet" href="/hj/css/dshbuser.css">
     <link rel="shortcut icon" href="/hj/images/icon.png">
     <script src="/hj/js/jquery-3.6.1.min.js"></script>
-    <script>
-        $(document).ready(function(){
-				$("#listproductos").change(function () {
-					$("#listproductos option:selected").each(function () {
-						idrsv = $(this).val();
-						$.post("/hj/php/get_precio.php", { idrsv: idrsv }, function(data){
-							$("#listprecios").html(data);
-						});            
-					});
-				})
-			})
-    </script>
     <title>Editar reserva | Huevos Jireth</title>
+    <script>
+        $(document).ready(function() {
+            $("#listproductos").change(function() {
+                $("#listproductos option:selected").each(function() {
+                    idrsv = $(this).val();
+                    $.post("/hj/model/get_precio.php", {
+                        idrsv: idrsv
+                    }, function(data) {
+                        $("#listprecios").html(data);
+                    });
+                });
+            })
+        })
+    </script>
 </head>
+
 <body>
-    <div class="main">
-        <div class="sidebar">
-            <center><a href="/hj/view/user.php"><img src="/hj/images/logo.png" id="logo"></a></center>
-            <ul>
-                <li>
-                    <a href="/hj/view/user-home.php">
-                        <i class='bx bxs-bookmark-minus' title="Principal"></i>
-                        <span class="item">Reservas</span>
+    <nav class="sidebar close">
+        <!--LOGO-->
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <a href="/hj/view/client/user.php">
+                        <img src="/hj/images/icon.png">
                     </a>
-                </li>
-                <li>
-                    <a href="/hj/view/user-pqrs.php">
-                        <i class='bx bxs-message-dots' title="Clientes"></i>
-                        <span class="item">PQRS</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/hj/view//template/personaldata.php">
-                    <i class='bx bxs-envelope'></i>
-                        <span class="item">Cambiar Correo</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/hj/view//template/personalContra.php">
-                    <i class='bx bx-key' ></i>
-                        <span class="item">Cambiar Clave</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/hj/view/user.php">
-                        <i class='bx bxs-home' title="Principal"></i>
-                        <span class="item">Volver a inicio</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!--NAVBAR-->
-        <div class="content">
-            <div class="navbar">
-                <div class="n1">
-                    <i class='bx bx-menu' id="btn-menu"></i>
-                    <h2>EDITAR RESERVA</h2>
+                </span>
+                <div class="text logo-text">
+                    <span class="name">Huevos Jireth</span>
                 </div>
-                <div class="n2">
-                    <h4><?php echo $_SESSION['usuario']?></h4>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <!--MENU-->
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="/hj/view/client/user.php">
+                            <i class='bx bx-home icon' title="Inicio"></i>
+                            <span class="text nav-text">Inicio</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/hj/view/client/user-pqrs.php">
+                            <i class='bx bx-message-dots icon' title="PQRS"></i>
+                            <span class="text nav-text">PQRS</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/hj/view/client/user-email.php">
+                            <i class='bx bx-envelope icon' title="Cambiar correo"></i>
+                            <span class="text nav-text">Correo</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/hj/view/client/user-pass.php">
+                            <i class='bx bxs-key icon' title="Cambiar contraseña"></i>
+                            <span class="text nav-text">Contraseña</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/hj/view/client/user-reserv.php">
+                            <i class='bx bx-bookmarks icon' title="Mis reservas"></i>
+                            <span class="text nav-text">Mis reservas</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--FOOTER-->
+            <div class="bottom-content">
+                <li class="nav-link" style="border-bottom: 1px solid red;">
+                    <i class='bx bx-user-circle icon' style="color:red;"></i>
+                    <span class="text nav-text" style="color:red;"><?php echo $_SESSION['usuario'] ?></span>
+                </li>
+                <li class="nav-link hola">
                     <a href="/hj/model/close_session.php">
-                        <i class='bx bx-log-in' title="Cerrar Sesión"></i>
+                        <i class='bx bx-log-out icon' style="color:red;"></i>
+                        <span class="text nav-text" style="color:red">Cerrar Sesión</span>
                     </a>
-                </div>
-            </div>
-
-            <!--TICKET-->
-            <div style="padding: 2% ;">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <form action="/hj/model/updtreserv.php" method="post">
-                        <div class="modal-body">
-                            <center><input type=hidden id="user_reserv" value="<?php echo $row['Cliente']?>" readonly name="usuario"></center>
-                            <label class="form-label">Escoje tu producto</label>
-                            <select id="listproductos" name="product" class="form-select">
-                                <?php $ok=mysqli_query($conx,$rsv);
-                                while($zz=mysqli_fetch_assoc($ok)) { ?>
-                                <option value="<?php echo $zz["Producto"]?>"><?php echo $zz["Producto"]?></option>
-                                <?php } ?>
-                            </select>
-                            <br>
-                            <label class="form-label">Precio</label>
-                            <select id="listprecios" onselect="calcular()" name="price" class="form-control">
-                                <?php $ok=mysqli_query($conx,$rsv);
-                                while($zz=mysqli_fetch_assoc($ok)) { ?>
-                                <option value="<?php echo $zz["Precio"]?>"><?php echo $zz["Precio"]?></option>
-                                <?php } ?>
-                            </select>
-                            <br>
-                            <label class="form-label">Panales</label>
-                            <input id="cantidad" type="number" name="amount" min="1" max="5" pattern="^[1-5]" oninput="calcular()" style="outline: none;">
-                            <br><br>
-                            <label class="form-label">Valor total</label>
-                            <br>
-                            <b><p>$<span id="total"></span></p></b>
-                        </div>
-                        <div class="modal-footer justify-content-start">
-                            <button type="submit" class="btn btn-success">Reservar</button>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><a class="cancelarboton" href="/hj/view/user-home.php">Cancelar</a></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                </li>
             </div>
         </div>
-    </div>
+    </nav>
+
+    <!--CONTENIDO-->
+    <section class="home">
+        <div>
+            <br>
+            <h2 class="title-header">Editar reserva</h2>
+            <hr>
+        </div>
+        <div>
+            <form action="">
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label">Producto</label>
+                        <select id="listproductos" class="form-select">
+                            <?php while ($list = mysqli_fetch_assoc($ok)) { ?>
+                                <option value="<?php echo $list["Producto"] ?>"><?php echo $list["Producto"] ?></option>
+                            <?php } ?>
+                            <?php while ($list2 = mysqli_fetch_assoc($ok2)) { ?>
+                                <option value="<?php echo $list2["Nombre"] ?>"><?php echo $list2["Nombre"] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Precio</label>
+                        <select id="listprecios" class="form-control" onselect="calcular()" name="price">
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label">Fecha</label>
+                        <input class="form-control" type="date" name="date" min="<?php echo $hoy ?>" required>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Hora</label>
+                        <input class="form-control" type="time" min="07:00" max="21:00" name="time" required>
+                    </div>
+                </div>
+                <br>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Panales</label>
+                    <div class="col-sm-1 col-md-2">
+                        <input id="cantidad" type="number" class="form-control form-control-sm" name="amount" min="1" max="5" maxlength="1" oninput="calcular(); if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeypress="return rsv(event)" value="<?php echo $list["Cantidad"] ?>" required>
+                    </div>
+                </div>
+                <br>
+                <label class="form-label">Valor total</label>
+                <h3>$<span id="total"></span></h3>
+                <br>
+                <div class="footer-buttons">
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <a href="../../view/client/user-reserv.php">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </section>
 
     <script src="/hj/js/menu.js"></script>
     <script src="/hj/js/select.js"></script>
 </body>
+
 </html>

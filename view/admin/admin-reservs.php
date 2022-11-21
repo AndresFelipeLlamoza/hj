@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario'])) {
     session_destroy();
     die();
 }
-$query = "SELECT * FROM reservas WHERE Estado='Vigente'";
+$query = "SELECT * FROM reservas WHERE Estado='Vigente' ORDER BY idReserva DESC";
 $result = mysqli_query($conx, $query);
 ?>
 

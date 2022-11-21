@@ -45,7 +45,7 @@ if (!isset($_SESSION['usuario'])) {
             </div>
         </div>
     </nav>
-
+    
     <div class="Contenerdor">
         <div class="recetaC">
             <div class="titulo">
@@ -83,6 +83,9 @@ if (!isset($_SESSION['usuario'])) {
 
                     Pela el chorizo. Corta el chorizo y el jamón en taquitos. Rehoga la mitad de chorizo y la mitad de jamón en una sartén con aceite. Añade las patatas con los puerros y los guisantes. Cocina todo a fuego suave durante 4-5 minutos y repártelo en 4 cazuelitas de barro. Cúbrelas con la salsa de tomate caliente y casca un par de huevos encima de cada cazuelita. Salpimienta los huevos, coloca alrededor el resto de jamón y del chorizo e introduce las cazuelitas en el horno. Hornéalas hasta que los huevos cuajen (a tu gusto). Retira, sirve y decora con unas hojas de perejil. <br> <br> </p>
             </div>
+            <center>
+                <button class="btn btn-info btn-sm" onclick=(window.history.back(-1))>Regresar</button>
+            </center>
         </div>
     </div>
     <?php include("../../view/template/footer.php") ?>
