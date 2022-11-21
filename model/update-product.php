@@ -7,7 +7,7 @@ $price=$_POST["price"];
 $cant=$_POST["amount"];
 $desc=$_POST["desc"];
 
-$update="UPDATE productos SET idProducto='$id', Nombre='$name', Precio='$price', Cantidad='$cant', Descripcion='$desc' WHERE idProducto='$id'";
+$update="UPDATE productos SET Nombre='$name', Precio='$price', Cantidad='$cant', Descripcion='$desc' WHERE idProducto='$id'";
 $result=mysqli_query($conx,$update);
 
 if($result){

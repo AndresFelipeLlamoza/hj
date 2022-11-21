@@ -291,10 +291,31 @@ hr{
 }
 
 /*--------------------------------------------------TICKETS--------------------------------------------------*/
+.ticketv{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 415px;
+    overflow-y: auto;
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.8);
+}
+.ticketv::-webkit-scrollbar{
+    width: 8px;
+}
+.ticketv::-webkit-scrollbar-thumb{
+    background: #ff9710;
+    display: none;
+    border-radius: 5px;
+}
+.ticketv:hover::-webkit-scrollbar-thumb{
+    display: block;
+}
+/**/
 .tickets{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    height: 385px;
+    height: 375px;
     overflow-y: auto;
     border-radius: 10px;
     padding: 1%;

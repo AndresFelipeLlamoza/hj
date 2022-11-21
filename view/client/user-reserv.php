@@ -122,7 +122,7 @@ $count3 = mysqli_fetch_assoc($check3);
         <!--TICKETS-->
         <!--VIGENTES-->
         <h3>Vigentes (<?php echo $count1["conteo"] ?>)</h3>
-        <div class="tickets">
+        <div class="ticketv">
             <?php while ($row1 = mysqli_fetch_assoc($result1)) { ?>
                 <div class="text-center ticket tv">
                     <div class="card mb-4 rounded-3 shadow-sm border-warning">

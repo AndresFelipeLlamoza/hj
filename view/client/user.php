@@ -183,6 +183,7 @@ $max=date('Y-m-d', strtotime($hoy.'+2 days'));
     <?php include("../../view/template/footer.php") ?>
     <script src="/hj/js/select.js"></script>
     <script src="/hj/js/modal-rsv.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

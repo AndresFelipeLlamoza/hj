@@ -127,8 +127,8 @@ $ok = mysqli_query($conx, $query);
                                 </a>
                             </td>
                         </tr>
+                    <?php } ?>
                 </tbody>
-            <?php } ?>
             </table>
         </div>
     </section>

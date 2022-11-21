@@ -128,22 +128,23 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
             <hr>
         </div>
         <div>
-            <form action="">
+        <?php while ($list = mysqli_fetch_assoc($ok)) { ?>
+            <form action="../../model/update-reserv.php" method="post">
                 <div class="row">
+                    <input type="hidden" value="<?php echo $list["idReserva"]?>" name="id" readonly>
                     <div class="col">
                         <label class="form-label">Producto</label>
-                        <select id="listproductos" class="form-select">
-                            <?php while ($list = mysqli_fetch_assoc($ok)) { ?>
-                                <option value="<?php echo $list["Producto"] ?>"><?php echo $list["Producto"] ?></option>
-                            <?php } ?>
+                        <select id="listproductos" class="form-select" name="product">
+                            <option value="<?php echo $list["Producto"] ?>"><?php echo $list["Producto"] ?></option>
                             <?php while ($list2 = mysqli_fetch_assoc($ok2)) { ?>
-                                <option value="<?php echo $list2["Nombre"] ?>"><?php echo $list2["Nombre"] ?></option>
+                            <option value="<?php echo $list2["Nombre"] ?>"><?php echo $list2["Nombre"] ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="col">
                         <label class="form-label">Precio</label>
                         <select id="listprecios" class="form-control" onselect="calcular()" name="price">
+                            <option value="<?php echo $list["Precio"] ?>"><?php echo $list["Precio"] ?></option>
                         </select>
                     </div>
                 </div>
@@ -151,11 +152,11 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                 <div class="row">
                     <div class="col">
                         <label class="form-label">Fecha</label>
-                        <input class="form-control" type="date" name="date" min="<?php echo $hoy ?>" required>
+                        <input class="form-control" type="date" name="date" min="<?php echo $hoy ?>" max="<?php echo $max?>" value="<?php echo $list["Fecha"] ?>" required>
                     </div>
                     <div class="col">
                         <label class="form-label">Hora</label>
-                        <input class="form-control" type="time" min="07:00" max="21:00" name="time" required>
+                        <input class="form-control" type="time" min="07:00" max="21:00" name="time" value="<?php echo $list["Hora"] ?>" required>
                     </div>
                 </div>
                 <br>
@@ -167,7 +168,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                 </div>
                 <br>
                 <label class="form-label">Valor total</label>
-                <h3>$<span id="total"></span></h3>
+                <h3>$<span id="total"><?php echo $list["Total"] ?></span></h3>
                 <br>
                 <div class="footer-buttons">
                     <button type="submit" class="btn btn-primary">Actualizar</button>
@@ -176,6 +177,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                     </a>
                 </div>
             </form>
+        <?php } ?>
         </div>
     </section>
 
