@@ -67,7 +67,7 @@ function signup(e){
         return false;
     }else if(name.length>35){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El nombre es muy largo',
             showConfirmButton: false,
@@ -76,7 +76,7 @@ function signup(e){
         return false;
     }else if(name.length<10){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El nombre es muy corto',
             showConfirmButton: false,
@@ -97,7 +97,7 @@ function signup(e){
         return false;
     }else if(!expresion.test(email)){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El correo debe tener el dominio',
             showConfirmButton: false,
@@ -118,7 +118,7 @@ function signup(e){
         return false;
     }else if(pass.length>10){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'La contraseña es larga. Debe ser entre 5 y 10 caracteres',
             showConfirmButton: false,
@@ -127,7 +127,7 @@ function signup(e){
         return false;
     }else if(pass.length<5){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'La contraseña es corta. Debe ser entre 5 y 10 caracteres',
             showConfirmButton: false,
@@ -173,7 +173,7 @@ function pqrs(e){
     /*TELEFONO*/
     if(tel===""){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El campo de teléfono esta vacío',
             showConfirmButton: false,
@@ -182,7 +182,7 @@ function pqrs(e){
         return false;
     }else if(tel.length<10){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'error',
             title: 'Número de teléfono inválido',
             showConfirmButton: false,
@@ -194,7 +194,7 @@ function pqrs(e){
     /*MENSAJE*/
     if(msg===""){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El campo de mensaje esta vacío',
             showConfirmButton: false,
@@ -203,7 +203,7 @@ function pqrs(e){
         return false;
     }else if(msg.length<10){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El mensaje es muy corto',
             showConfirmButton: false,
@@ -222,7 +222,7 @@ function product(e){
     /*NOMBRE*/
     if(pname===""){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'Introduzca el nombre del producto',
             showConfirmButton: false,
@@ -231,7 +231,7 @@ function product(e){
         return false;
     }else if(pname.length<15){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El nombre es corto',
             showConfirmButton: false,
@@ -240,7 +240,7 @@ function product(e){
         return false;
     }else if(pname.length>20){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El nombre es muy largo',
             showConfirmButton: false,
@@ -252,7 +252,7 @@ function product(e){
     /*PRECIO*/
     if(pprice===""){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'Introduzca el precio',
             showConfirmButton: false,
@@ -261,7 +261,7 @@ function product(e){
         return false;
     }else if(pprice.length<4){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El precio debe ser mayor de 3<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> digitos',
             showConfirmButton: false,
@@ -270,7 +270,7 @@ function product(e){
         return false;
     }else if(pprice>30000){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El precio no debe superar de los $30.000',
             showConfirmButton: false,
@@ -282,7 +282,7 @@ function product(e){
     /*CANTIDAD*/
     if(pcant===""){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'Introduzca la cantidad',
             showConfirmButton: false,
@@ -291,7 +291,7 @@ function product(e){
         return false;
     }else if(pcant>150){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'La cantidad no debe superar a los 150',
             showConfirmButton: false,
@@ -303,7 +303,7 @@ function product(e){
     /*DESCRIPCION*/
     if(pdesc===""){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'Introduzca la descripción',
             showConfirmButton: false,
@@ -312,7 +312,7 @@ function product(e){
         return false;
     }else if(pdesc.length<18){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'La descripción es corta',
             showConfirmButton: false,
@@ -321,7 +321,7 @@ function product(e){
         return false;
     }else if(pdesc.length>300){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'La descripción es demasiada larga',
             showConfirmButton: false,
@@ -340,7 +340,7 @@ function changeemail(e){
     /*CORREO*/
     if(email===""){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'Digite el correo',
             showConfirmButton: false,
@@ -349,7 +349,7 @@ function changeemail(e){
         return false;
     }else if(!expresion.test(email)){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'El correo debe tener un dominio',
             showConfirmButton: false,
@@ -366,7 +366,7 @@ function changepassword(e){
     /*PASS1*/
     if(pass1===""){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'Introduzca la contraseña actual',
             showConfirmButton: false,
@@ -378,7 +378,7 @@ function changepassword(e){
     /*PASS2*/
     if(pass2===""){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'Digite la nueva contraseña',
             showConfirmButton: false,
@@ -387,7 +387,7 @@ function changepassword(e){
         return false;
     }else if(pass2.length<5){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'La contraseña nueva debe tener mínimo 5 caracteres',
             showConfirmButton: false,
@@ -396,7 +396,7 @@ function changepassword(e){
         return false;
     }else if(pass2.length>10){
         swal.fire({
-            position: 'bottom-end',
+            position: 'center',
             icon: 'warning',
             title: 'La contraseña debe ser como máximo 10 caracteres',
             showConfirmButton: false,

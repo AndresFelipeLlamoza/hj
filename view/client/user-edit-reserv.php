@@ -33,6 +33,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
     <link rel="stylesheet" href="/hj/css/dshbuser.css">
     <link rel="shortcut icon" href="/hj/images/icon.png">
     <script src="/hj/js/jquery-3.6.1.min.js"></script>
+    <script src="/hj/js/validation.js"></script>
     <title>Editar reserva | Huevos Jireth</title>
     <script>
         $(document).ready(function() {
@@ -43,6 +44,14 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                         idrsv: idrsv
                     }, function(data) {
                         $("#listprecios").html(data);
+                        const cop = new Intl.NumberFormat('es-CO', {
+                            style: 'currency',
+                            currency: 'COP',
+                            minimumFractionDigits: 0
+                        })
+                        var a = parseFloat(document.getElementById("listprecios").value)
+                        var b = !isNaN(parseFloat(document.getElementById("cantidad").value)) ? parseFloat(document.getElementById("cantidad").value) : 1
+                        document.getElementById("total").innerHTML = cop.format(a * b)
                     });
                 });
             })

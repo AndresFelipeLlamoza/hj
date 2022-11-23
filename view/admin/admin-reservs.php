@@ -129,7 +129,7 @@ $result = mysqli_query($conx, $query);
                             <td><?php echo $row["Estado"] ?></td>
                             <td>
                                 <a href="../../model/update-state.php?id=<?php echo $row["idReserva"] ?>" style="text-decoration: none;">
-                                    <button class="btn btn-warning btn-sm rr">Retirar</button>
+                                    <button id="rt" class="btn btn-warning btn-sm rr">Retirar</button>
                                 </a>
                                 <a href="../../model/cancel-reserv1.php?id=<?php echo $row["idReserva"] ?>" style="text-decoration: none;">
                                     <button class="btn btn-danger btn-sm cr">Cancelar</button>

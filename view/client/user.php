@@ -7,7 +7,7 @@ if (!isset($_SESSION['usuario'])) {
     die();
 }
 $products = "SELECT * FROM productos";
-$show=mysqli_query($conx,$products);
+$show = mysqli_query($conx, $products);
 $productsx = "SELECT * FROM productos WHERE Cantidad>=1";
 $ok = mysqli_query($conx, $productsx);
 $I = array(
@@ -16,8 +16,8 @@ $I = array(
     "/hj/images/bg_huevos3.jpg",
     "/hj/images/bg_huevos4.jpg"
 );
-$hoy=date('Y-m-d');
-$max=date('Y-m-d', strtotime($hoy.'+2 days'));
+$hoy = date('Y-m-d');
+$max = date('Y-m-d', strtotime($hoy . '+2 days'));
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +41,14 @@ $max=date('Y-m-d', strtotime($hoy.'+2 days'));
                         idrsv: idrsv
                     }, function(data) {
                         $("#listprecios").html(data);
+                        const cop = new Intl.NumberFormat('es-CO', {
+                            style: 'currency',
+                            currency: 'COP',
+                            minimumFractionDigits: 0
+                        })
+                        var a = parseFloat(document.getElementById("listprecios").value)
+                        var b = !isNaN(parseFloat(document.getElementById("cantidad").value)) ? parseFloat(document.getElementById("cantidad").value) : 1
+                        document.getElementById("total").innerHTML = cop.format(a * b)
                     });
                 });
             })
@@ -86,7 +94,8 @@ $max=date('Y-m-d', strtotime($hoy.'+2 days'));
                     <p style="color: greenyellow">Cantidad disponible: <?php echo $row["Cantidad"] ?> Panales</p>
                     <p><?php echo $row["Descripcion"] ?></p>
                 </div>
-            <?php } mysqli_free_result($show); ?>
+            <?php }
+            mysqli_free_result($show); ?>
         </div>
     </section>
 
@@ -111,7 +120,7 @@ $max=date('Y-m-d', strtotime($hoy.'+2 days'));
                                     <select id="listproductos" class="form-select" name="product" required>
                                         <option value="0" select hidden>Seleccione</option>
                                         <?php while ($list = mysqli_fetch_assoc($ok)) { ?>
-                                        <option value="<?php echo $list["Nombre"] ?>"><?php echo $list["Nombre"] ?></option>
+                                            <option value="<?php echo $list["Nombre"] ?>"><?php echo $list["Nombre"] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -131,7 +140,7 @@ $max=date('Y-m-d', strtotime($hoy.'+2 days'));
                             <div class="row align-items">
                                 <div class="col">
                                     <label class="form-label">Fecha</label>
-                                    <input class="form-control" type="date" name="date" min="<?php echo $hoy?>" max="<?php echo $max?>" required>
+                                    <input class="form-control" type="date" name="date" min="<?php echo $hoy ?>" max="<?php echo $max ?>" required>
                                 </div>
                                 <div class="col">
                                     <label class="form-label">Hora</label>
@@ -181,8 +190,8 @@ $max=date('Y-m-d', strtotime($hoy.'+2 days'));
     </section>
 
     <?php include("../../view/template/footer.php") ?>
-    <script src="/hj/js/select.js"></script>
     <script src="/hj/js/modal-rsv.js"></script>
+    <script src="/hj/js/select.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
