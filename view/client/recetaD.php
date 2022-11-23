@@ -85,7 +85,7 @@ if (!isset($_SESSION['usuario'])) {
                 </p>
             </div>
             <center>
-                <button class="btn btn-info btn-sm" onclick=(window.history.back(-1))>Regresar</button>
+                <button class="btn btn-info" onclick=(window.history.back(-1))>Regresar</button>
             </center>
         </div>
     </div>

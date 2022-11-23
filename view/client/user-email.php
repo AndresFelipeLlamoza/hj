@@ -125,5 +125,6 @@ if(!isset($_SESSION['usuario'])){
     </section>
 
     <script src="/hj/js/menu.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

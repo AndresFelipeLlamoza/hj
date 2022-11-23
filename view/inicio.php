@@ -70,7 +70,7 @@ $I = array(
     <!--RESERVAR-->
     <section id="reservar">
         <center>
-            <button type="button" class="btn-rsv" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-custom-class="custom-popover" data-bs-title="¡HAZ TU RESERVA YA!" data-bs-content="Para realizar una reserva, debes iniciar sesión o crear una cuenta.">
+            <button type="button" class="btn-rsv" data-bs-html="true" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-custom-class="custom-popover" data-bs-title="¡HAZ TU RESERVA YA!" data-bs-content="Debes <a href='/hj/view/login.php'>iniciar sesión</a> para realizar una reserva.">
                 Reservar
             </button>
         </center>

@@ -57,34 +57,82 @@ function signup(e){
 
     /*NOMBRE*/
     if(name===""){
-        alert("El campo NOMBRE esta vacio");
+        swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'El campo de nombre esta vacío',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(name.length>35){
-        alert("El nombre es muy largo");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El nombre es muy largo',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(name.length<10){
-        alert("El nombre es muy corto");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El nombre es muy corto',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 
     /*CORREO*/
     if(email===""){
-        alert("El campo CORREO esta vacio");
+        swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'El campo de correo esta vacío',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(!expresion.test(email)){
-        alert("El correo debe contener un dominio");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El correo debe tener el dominio',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 
     /*CONTRASEÑA*/
     if(pass===""){
-        alert("El campo CONTRASEÑA esta vacio");
+        swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'El campo de contraseña esta vacío',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
-    }else if(pass.length>18){
-        alert("La contraseña es larga. Debe ser como minimo 5 caracteres y maximo de 10 caracteres");
+    }else if(pass.length>10){
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'La contraseña es larga. Debe ser entre 5 y 10 caracteres',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(pass.length<5){
-        alert("La contraseña es muy corta");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'La contraseña es corta. Debe ser entre 5 y 10 caracteres',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 }
@@ -95,13 +143,25 @@ function login(e){
 
     /*NOMBRE*/
     if(name===""){
-        alert("El campo NOMBRE esta vacio");
+        swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'El campo de nombre esta vacío',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 
     /*CONTRASEÑA*/
     else if(pass===""){
-        alert("El campo CONTRASEÑA esta vacio");
+        swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'El campo de contraseña esta vacío',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 }
@@ -112,19 +172,43 @@ function pqrs(e){
 
     /*TELEFONO*/
     if(tel===""){
-        alert("El campo TELEFONO esta vacio");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El campo de teléfono esta vacío',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(tel.length<10){
-        alert("Numero Inválido");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'error',
+            title: 'Número de teléfono inválido',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 
     /*MENSAJE*/
     if(msg===""){
-        alert("El campo MENSAJE esta vacio");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El campo de mensaje esta vacío',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(msg.length<10){
-        alert("El mensaje es muy corto");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El mensaje es muy corto',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 }
@@ -137,46 +221,112 @@ function product(e){
 
     /*NOMBRE*/
     if(pname===""){
-        alert("Introduzca el nombre del producto");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Introduzca el nombre del producto',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(pname.length<15){
-        alert("El nombre es corto");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El nombre es corto',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(pname.length>20){
-        alert("El nombre es muy largo");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El nombre es muy largo',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
     
     /*PRECIO*/
     if(pprice===""){
-        alert("Introduzca el precio");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Introduzca el precio',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(pprice.length<4){
-        alert("El precio debe ser mayor de 4 digitos");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El precio debe ser mayor de 3<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> digitos',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(pprice>30000){
-        alert("El precio no debe superar de los 30.000 pesos");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El precio no debe superar de los $30.000',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
     
     /*CANTIDAD*/
     if(pcant===""){
-        alert("Introduzca la cantidad");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Introduzca la cantidad',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(pcant>150){
-        alert("La cantidad no debe superar a los 150");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'La cantidad no debe superar a los 150',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 
     /*DESCRIPCION*/
     if(pdesc===""){
-        alert("Introduzca la descripción");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Introduzca la descripción',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(pdesc.length<18){
-        alert("La descripcion es corta");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'La descripción es corta',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(pdesc.length>300){
-        alert("La descripcion es demasiada larga");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'La descripción es demasiada larga',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 }
@@ -189,10 +339,22 @@ function changeemail(e){
 
     /*CORREO*/
     if(email===""){
-        alert("Digite el correo");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Digite el correo',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }else if(!expresion.test(email)){
-        alert("El correo debe contener un dominio");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'El correo debe tener un dominio',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 }
@@ -203,19 +365,43 @@ function changepassword(e){
 
     /*PASS1*/
     if(pass1===""){
-        alert("Introduzca la contraseña actual");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Introduzca la contraseña actual',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 
     /*PASS2*/
     if(pass2===""){
-        alert("Digite la nueva contraseña");
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'Digite la nueva contraseña',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
-    }else if(pass2.length<8){
-        alert("La contraseña nueva debe ser como mínimo 8 caracteres");
+    }else if(pass2.length<5){
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'La contraseña nueva debe tener mínimo 5 caracteres',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
-    }else if(pass2.length>15){
-        alert("La contraseña es muy larga. Máximo 15 caracteres");
+    }else if(pass2.length>10){
+        swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: 'La contraseña debe ser como máximo 10 caracteres',
+            showConfirmButton: false,
+            timer: 3000
+        });
         return false;
     }
 }

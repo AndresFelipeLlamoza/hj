@@ -55,6 +55,6 @@
 
     <!--FOOTER-->
     <?php include("../view/template/footer.php") ?>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
-
 </html>

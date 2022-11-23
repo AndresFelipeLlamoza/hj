@@ -65,6 +65,9 @@
 
                     Cuando tengamos todos los huevos listos montamos el plato. Colocamos la rebanada de pan tostado como base, encima ponemos una o dos lonchas del bacon fritas, el huevo escalfado y como coronación una buena porción de salsa holandesa.<br> <br> </p>
             </div>
+            <center>
+                <button class="btn btn-info" onclick=(window.history.back(-1))>Regresar</button>
+            </center>
         </div>
     </div>
     <?php include("../view/template/footer.php") ?>

@@ -117,7 +117,7 @@ $max=date('Y-m-d', strtotime($hoy.'+2 days'));
                                 </div>
                                 <div class="col">
                                     <label class="form-label">Precio</label>
-                                    <select id="listprecios" class="form-control" onselect="calcular()" name="price">
+                                    <select id="listprecios" class="form-control" onselect="calcular()" onchange="calcular()" name="price">
                                     </select>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@ $max=date('Y-m-d', strtotime($hoy.'+2 days'));
                             </div>
                             <br>
                             <label class="form-label">Valor total</label>
-                            <h3>$<span id="total"></span></h3>
+                            <h3><span id="total">$0</span></h3>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Reservar</button>

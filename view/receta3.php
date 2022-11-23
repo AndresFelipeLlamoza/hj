@@ -64,6 +64,9 @@
                     Echamos en una sartén 5 ml de aceite de oliva virgen extra y, cuando esté caliente, cascamos un huevo y lo hacemos a la plancha procurando que la yema no se cuaje.<br> <br>
                     Ponemos el huevo sobre el aguacate y volvemos a condimentar con la mezcla de especias anteriormente citadas. Colocamos la otra rebanada de pan de molde tostado y ya tenemos nuestro sándwich listo para disfrutar. <br> <br>
             </div>
+            <center>
+                <button class="btn btn-info" onclick=(window.history.back(-1))>Regresar</button>
+            </center>
         </div>
     </div>
     <?php include("../view/template/footer.php") ?>

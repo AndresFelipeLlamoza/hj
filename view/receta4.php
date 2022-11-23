@@ -70,6 +70,9 @@
                     Pasados estos 10 minutos, destapamos y espolvoreamos nuevamente con orégano. Servimos inmediatamente.
                 </p>
             </div>
+            <center>
+                <button class="btn btn-info" onclick=(window.history.back(-1))>Regresar</button>
+            </center>
         </div>
     </div>
     <?php include("../view/template/footer.php") ?>

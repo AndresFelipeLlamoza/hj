@@ -210,6 +210,7 @@ $count3 = mysqli_fetch_assoc($check3);
 
     <script src="/hj/js/menu.js"></script>
     <script src="/hj/js/confirmation.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
