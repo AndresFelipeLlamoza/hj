@@ -9,7 +9,9 @@
     <link rel="shortcut icon" href="/hj/images/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="/hj/css/login.css">
     <link rel="stylesheet" href="/hj/css/header.css">
+    <link rel="stylesheet" href="../package/dist/sweetalert2.min.css">
     <script src="/hj/js/validation.js"></script>
+    <script src="/hj/js/jquery-3.6.1.min.js"></script>
     <title>Acceder - Huevos Jireth</title>
 </head>
 
@@ -37,7 +39,7 @@
             <a class="olvidaste" href="#">¿Olvidaste tu contraseña?</a>
         </form>
         <!--REGISTRO-->
-        <form action="/hj/model/create_user.php" method="post" class="register" onsubmit="return signup(event)">
+        <form action="" method="post" class="register" onsubmit="return signup(event)">
             <div class="imgform">
                 <img src="/hj/images/pollito2.png" alt="Pollito" class="PollitoHuevo">
             </div>
@@ -49,12 +51,54 @@
                 <input type="checkbox" required>
                 <a href="#">Acepta nuestros términos y condiciones</a>
             </div> -->
-            <button type="submit" class="botonregister">Registrarse</button>
+            <button id="ru" type="submit" class="botonregister">Registrarse</button>
         </form>
     </div>
 
     <!--FOOTER-->
     <?php include("../view/template/footer.php") ?>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../package/dist/sweetalert2.all.js"></script>
+    <script src="../package/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#ru').click(function(e){
+                var valid = this.form.checkValidity();
+
+                if(valid){
+                    var nombre = $('#nombre1').val();
+                    var correo = $('#correo1').val();
+                    var contraseña = $('#contraseña1').val();
+
+                    e.preventDefault();
+
+                    $.ajax({
+                        type:'POST',
+                        url:'/hj/model/create-user.php',
+                        data:{nombre:nombre, correo:correo, contraseña:contraseña},
+                        success: function(data){
+                            Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Usuario Registrado',
+                            showConfirmButton: false,
+                            timer: 1500
+                            }).then(function(){
+                                window.location='./login.php';
+                            });
+                        },
+                        error:function(data){
+                            Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'ERROR',
+                            showConfirmButton: true,
+                            timer: 1500
+                            })
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 </body>
 </html>

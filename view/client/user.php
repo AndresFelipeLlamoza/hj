@@ -30,6 +30,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="/hj/css/inicio.css">
     <link rel="shortcut icon" href="/hj/images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../package/dist/sweetalert2.min.css">
     <script src="/hj/js/validation.js"></script>
     <script src="/hj/js/jquery-3.6.1.min.js"></script>
     <script>
@@ -107,7 +108,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
         <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="/hj/model/create-reservation.php" method="post">
+                    <form action="" method="POST">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalToggleLabel">¡HAZ TU RESERVA YA!</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -118,7 +119,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                                 <div class="col">
                                     <label class="form-label">Escoje tu producto</label>
                                     <select id="listproductos" class="form-select" name="product" required>
-                                        <option value="0" select hidden>Seleccione</option>
+                                        <option value="" select hidden>Seleccione</option>
                                         <?php while ($list = mysqli_fetch_assoc($ok)) { ?>
                                             <option value="<?php echo $list["Nombre"] ?>"><?php echo $list["Nombre"] ?></option>
                                         <?php } ?>
@@ -140,11 +141,11 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                             <div class="row align-items">
                                 <div class="col">
                                     <label class="form-label">Fecha</label>
-                                    <input class="form-control" type="date" name="date" min="<?php echo $hoy ?>" max="<?php echo $max ?>" required>
+                                    <input id="fecha" class="form-control" type="date" name="date" min="<?php echo $hoy ?>" max="<?php echo $max ?>" required>
                                 </div>
                                 <div class="col">
                                     <label class="form-label">Hora</label>
-                                    <input class="form-control" type="time" min="07:00" max="21:00" name="time" required>
+                                    <input id="hora" class="form-control" type="time" min="07:00" max="21:00" name="time" required>
                                 </div>
                             </div>
                             <br>
@@ -152,7 +153,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                             <h3><span id="total">$ 0</span></h3>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Reservar</button>
+                            <button id="gr" type="submit" class="btn btn-success">Reservar</button>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                         </div>
                     </form>
@@ -192,7 +193,52 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
     <?php include("../../view/template/footer.php") ?>
     <script src="/hj/js/modal-rsv.js"></script>
     <script src="/hj/js/select.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../package/dist/sweetalert2.all.js"></script>
+    <script src="../../package/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#gr').click(function(e){
+                var valid = this.form.checkValidity();
+
+                if(valid){
+                    var nombre = $('#user_reserv').val();
+                    var producto = $('#listproductos').val();
+                    var precio = $('#listprecios').val();
+                    var cantidad = $('#cantidad').val();
+                    var fecha = $('#fecha').val();
+                    var hora = $('#hora').val();
+
+                    e.preventDefault();
+
+                    $.ajax({
+                        type:'POST',
+                        url:'../../model/create-reservation.php',
+                        data:{nombre:nombre, producto:producto, precio:precio, cantidad:cantidad, fecha:fecha, hora: hora},
+                        success: function(data){
+                            Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Reserva Guardada',
+                            showConfirmButton: false,
+                            timer: 1500
+                            }).then(function(){
+                                window.location='../../view/client/user-reserv.php';
+                            });
+                        },
+                        error:function(data){
+                            Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'ERROR',
+                            showConfirmButton: true,
+                            timer: 1500
+                            })
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>
