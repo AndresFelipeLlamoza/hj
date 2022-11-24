@@ -7,24 +7,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
-
-.linkrep{
-    text-decoration: none;
-    color: #d6d6d6;
-    padding: 5px;
-    border-radius: 30px;
-    background-color: red;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    border: 1px solid rgb(0, 0, 0);
-}
-
-.linkrep:hover{
-   transition: all .3s;
-   background-color:#ff9710;
-   color: white
-}
 :root{
     /* ===== Colors ===== */
     --body-color: #d6d6d6;
@@ -97,7 +79,7 @@ body{
 
 .sidebar .text,
 .sidebar .icon{
-    color: var(--text-color);
+    color: black;
     transition: var(--tran-03);
 }
 
@@ -201,6 +183,20 @@ header .image-text .profession{
     color: var(--sidebar-color);
 }
 
+.sidebar li a:hover .icon,  
+.sidebar li a:hover .text{
+    color: white !important;
+}
+
+.sidebar .hola a:hover{
+    background-color: red;
+}
+
+.sidebar .hola a:hover .icon,  
+.sidebar .hola a:hover .text{
+    color: white;
+}
+
 
 .sidebar .menu-bar{
     height: calc(100% - 55px);
@@ -256,10 +252,8 @@ header .image-text .profession{
 .home{
     position: absolute;
     top: 0;
-    top: 0;
     left: 170px;
     padding-right: 30px;
-    height: 100vh;
     width: calc(100% - 170px);
     background-color: var(--body-color);
     transition: var(--tran-05);

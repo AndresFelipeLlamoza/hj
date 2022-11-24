@@ -74,14 +74,14 @@ if (!isset($_SESSION['usuario'])) {
 
             <!--FOOTER-->
             <div class="bottom-content">
-                <li class="nav-link">
-                    <i class='bx bx-user-circle icon' title="<?php echo $_SESSION['usuario']?>"></i>                        
-                    <span class="text nav-text" style="font-size: 12px;"><?php echo $_SESSION['usuario']?></span>
+                <li class="nav-link" style="border-bottom: 1px solid red;">
+                    <i class='bx bx-user-circle icon' style="color:red;" title="<?php echo $_SESSION['usuario'] ?>"></i>
+                    <span class="text nav-text" style="color:red;"><?php echo $_SESSION['usuario'] ?></span>
                 </li>
-                <li class="">
+                <li class="nav-link hola">
                     <a href="/hj/model/close_session.php">
-                        <i class='bx bx-log-out icon' style="color:red" title="Cerrar Sesión"></i>
-                        <span class="text nav-text" style="font-size: 12px; color:red">Cerrar Sesión</span>
+                        <i class='bx bx-log-out icon' style="color:red;" title="Cerrar Sesión"></i>
+                        <span class="text nav-text" style="color:red">Cerrar Sesión</span>
                     </a>
                 </li>
             </div>

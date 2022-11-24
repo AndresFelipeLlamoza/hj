@@ -55,6 +55,18 @@ function signup(e){
 
     expresion = /\w+@\w+\.+[a-z]/;
 
+    /**/
+    if(name==="" && email==="" && pass ===""){
+        swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Completa el formulario de registro',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        return false;
+    }
+
     /*NOMBRE*/
     if(name===""){
         swal.fire({
@@ -140,6 +152,18 @@ function signup(e){
 function login(e){
     const name = document.getElementById("nombre2").value;
     const pass = document.getElementById("contraseña2").value;
+
+    /**/
+    if(name==="" && pass ===""){
+        swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Completa el formulario de inicio de sesión',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        return false;
+    }
 
     /*NOMBRE*/
     if(name===""){

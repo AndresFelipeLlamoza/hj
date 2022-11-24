@@ -177,7 +177,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                 </div>
                 <br>
                 <label class="form-label">Valor total</label>
-                <h3><span id="total">$<?php echo $list["Total"] ?></span></h3>
+                <h3><span id="total">$ <?php echo $list["Total"] ?></span></h3>
                 <br>
                 <div class="footer-buttons">
                     <button type="submit" class="btn btn-primary">Actualizar</button>

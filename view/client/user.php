@@ -47,7 +47,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                             minimumFractionDigits: 0
                         })
                         var a = parseFloat(document.getElementById("listprecios").value)
-                        var b = !isNaN(parseFloat(document.getElementById("cantidad").value)) ? parseFloat(document.getElementById("cantidad").value) : 1
+                        var b = !isNaN(parseFloat(document.getElementById("cantidad").value)) ? parseFloat(document.getElementById("cantidad").value) : 0
                         document.getElementById("total").innerHTML = cop.format(a * b)
                     });
                 });
@@ -149,7 +149,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                             </div>
                             <br>
                             <label class="form-label">Valor total</label>
-                            <h3><span id="total">$0</span></h3>
+                            <h3><span id="total">$ 0</span></h3>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Reservar</button>

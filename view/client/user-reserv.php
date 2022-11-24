@@ -99,12 +99,12 @@ $count3 = mysqli_fetch_assoc($check3);
             <!--FOOTER-->
             <div class="bottom-content">
                 <li class="nav-link" style="border-bottom: 1px solid red;">
-                    <i class='bx bx-user-circle icon' style="color:red;"></i>
+                    <i class='bx bx-user-circle icon' style="color:red;" title="<?php echo $_SESSION['usuario'] ?>"></i>
                     <span class="text nav-text" style="color:red;"><?php echo $_SESSION['usuario'] ?></span>
                 </li>
                 <li class="nav-link hola">
                     <a href="/hj/model/close_session.php">
-                        <i class='bx bx-log-out icon' style="color:red;"></i>
+                        <i class='bx bx-log-out icon' style="color:red;" title="Cerrar Sesión"></i>
                         <span class="text nav-text" style="color:red">Cerrar Sesión</span>
                     </a>
                 </li>
@@ -121,10 +121,10 @@ $count3 = mysqli_fetch_assoc($check3);
         </div>
         <!--TICKETS-->
         <!--VIGENTES-->
-        <h3>Vigentes (<?php echo $count1["conteo"] ?>)</h3>
+        <h3 class="t-tk">Vigentes (<?php echo $count1["conteo"] ?>)</h3>
         <div class="ticketv">
             <?php while ($row1 = mysqli_fetch_assoc($result1)) { ?>
-                <div class="text-center ticket tv">
+                <div class="text-center ticket">
                     <div class="card mb-4 rounded-3 shadow-sm border-warning">
                         <div class="card-header py-2 text-bg-warning border-warning">
                             <h4 class="my-0 fw-normal"><?php echo $row1["Estado"] ?></h4>
@@ -154,7 +154,7 @@ $count3 = mysqli_fetch_assoc($check3);
         </div>
         <br>
         <!--RETIRADOS-->
-        <h3>Retirados (<?php echo $count2["conteo"] ?>)</h3>
+        <h3 class="t-tk">Retirados (<?php echo $count2["conteo"] ?>)</h3>
         <div class="tickets">
             <?php while ($row2 = mysqli_fetch_assoc($result2)) { ?>
                 <div class="text-center ticket">
@@ -181,7 +181,7 @@ $count3 = mysqli_fetch_assoc($check3);
         </div>
         <br>
         <!--CANCELADOS-->
-        <h3>Cancelados (<?php echo $count3["conteo"] ?>)</h3>
+        <h3 class="t-tk">Cancelados (<?php echo $count3["conteo"] ?>)</h3>
         <div class="tickets">
             <?php while ($row3 = mysqli_fetch_assoc($result3)) { ?>
                 <div class="text-center ticket">

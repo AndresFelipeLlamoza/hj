@@ -25,18 +25,17 @@ li a{
 
 nav{
     background-color: var(--body-color);
-    position: fixed;
     border-bottom: 1px solid var(--primary-color);
 }
 
 .nav-item.selector:hover{
     background-color: var(--secondary-color);
-    transition: all .8s;
+    transition: all .5s;
 }
 
 .nav-item.cs:hover{
     background-color: var(--primary-color) !important;
-    transition: all .8s;
+    transition: all .5s;
 }
 
 .nav-link.cs:hover{

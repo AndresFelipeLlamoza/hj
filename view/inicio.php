@@ -58,7 +58,7 @@ $I = array(
                 <div class="pedaso" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url(<?php echo $I[$nImg]; ?>);">
                     <?php $nImg = $nImg + 1; ?>
                     <h1><?php echo $row["Nombre"] ?></h1>
-                    <h4>$<?php echo $row["Precio"] ?></h4>
+                    <h4 id="coin">$<?php echo $row["Precio"] ?></h4>
                     <p style="color: greenyellow">Cantidad disponible: <?php echo $row["Cantidad"] ?> Panales</p>
                     <p><?php echo $row["Descripcion"] ?></p>
                 </div>
@@ -105,6 +105,15 @@ $I = array(
     </section>
 
     <script src="/hj/js/modal-home.js"></script>
+    <script type="text/javascript">
+        const x = document.getElementById("coin").innerHTML;
+        const cop = new Intl.NumberFormat('es-CO',{
+        style:'currency',
+        currency:'COP',
+        minimumFractionDigits:0
+        })
+        console.log(cop.format(x))
+    </script>
 </body>
 
 </html>
