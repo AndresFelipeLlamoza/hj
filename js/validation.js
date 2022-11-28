@@ -30,22 +30,6 @@ function solonumeros(e){
         return false;
     }
 }
-//*RSV*\\
-function rsv(e){
-    key=e.keyCode || e.which;
-    teclado=String.fromCharCode(key).toLowerCase();
-    numero="12345";
-    especiales="8-37-38-46-164";
-    teclado_especial=false;
-    for(var i in especiales){
-        if(key==especiales[i]){
-            teclado_especial==true;break;
-        }
-    }
-    if(numero.indexOf(teclado)==-1 && !teclado_especial){
-        return false;
-    }
-}
 /*--------------------------------------------------LOGIN--------------------------------------------------*/
 function login(e){
     const name = document.getElementById("nombre2").value;

@@ -135,7 +135,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                             <div class="mb-3 row">
                                 <label class="col-sm-2 col-form-label">Panales</label>
                                 <div class="col-sm-10 col-md-2">
-                                    <input id="cantidad" type="number" class="form-control form-control-sm" name="amount" min="1" max="5" maxlength="1" oninput="calcular(); if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeypress="return rsv(event)" required>
+                                    <input id="cantidad" type="number" class="form-control form-control-sm" name="amount" min="1" max="10" oninput="calcular()" required>
                                 </div>
                             </div>
                             <div class="row align-items">
@@ -183,7 +183,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                 <a href="/hj/view/client/recetaC.php" class="re">Ver más</a>
             </div>
             <div class="receta">
-                <img src="/hj/images/receta1.jpg" alt="Receta 4">
+                <img src="/hj/images/receta4.jpg" alt="Receta 4">
                 <h1>HUEVOS TURCOS</h1>
                 <a href="/hj/view/client/recetaD.php" class="re">Ver más</a>
             </div>
@@ -244,6 +244,13 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                     })
                 }
             })
+        })
+    </script>
+    <script type="text/javascript">
+        $('#cantidad').keypress(function(e){
+            if(event.which<2 || this.value.length===2){
+                return false;
+            }
         })
     </script>
 </body>

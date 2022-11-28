@@ -119,7 +119,7 @@ $result = mysqli_query($conx, $query);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                    <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                         <tr>
                             <td><?php echo $row["Cliente"] ?></td>
                             <td><?php echo $row["Producto"] ?></td>
@@ -138,7 +138,7 @@ $result = mysqli_query($conx, $query);
                                 </a>
                             </td>
                         </tr>
-                    <?php } ?>
+                    <?php endwhile; ?>
                 </tbody>
             </table>
             <!--SCRIPT-->

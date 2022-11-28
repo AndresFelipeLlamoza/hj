@@ -97,7 +97,7 @@ $I = array(
                 <a href="/hj/view/receta3.php" class="re">Ver más</a>
             </div>
             <div class="receta">
-                <img src="/hj/images/receta1.jpg" alt="Receta 4">
+                <img src="/hj/images/receta4.jpg" alt="Receta 4">
                 <h1>HUEVOS TURCOS</h1>
                 <a href="/hj/view/receta4.php" class="re">Ver más</a>
             </div>

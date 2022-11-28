@@ -174,7 +174,7 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Panales</label>
                         <div class="col-sm-1 col-md-2">
-                            <input id="cantidad" type="number" class="form-control form-control-sm" name="amount" min="1" max="5" maxlength="1" oninput="calcular(); if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeypress="return rsv(event)" value="<?php echo $list["Cantidad"] ?>" required>
+                            <input id="cantidad" type="number" class="form-control form-control-sm" name="amount" min="1" max="10" oninput="calcular()" value="<?php echo $list["Cantidad"] ?>" required>
                         </div>
                     </div>
                     <br>

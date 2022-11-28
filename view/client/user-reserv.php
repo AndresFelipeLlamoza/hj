@@ -125,7 +125,7 @@ $count3 = mysqli_fetch_assoc($check3);
         <!--VIGENTES-->
         <h3 class="t-tk">Vigentes (<?php echo $count1["conteo"] ?>)</h3>
         <div class="ticketv">
-            <?php while ($row1 = mysqli_fetch_assoc($result1)) { ?>
+            <?php while ($row1 = mysqli_fetch_assoc($result1)) : ?>
                 <div class="text-center ticket">
                     <div class="card mb-4 rounded-3 shadow-sm border-warning">
                         <div class="card-header py-2 text-bg-warning border-warning">
@@ -152,46 +152,46 @@ $count3 = mysqli_fetch_assoc($check3);
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
-        <script>
-            $('#rcancel').on('click', function cancelar(e) {
-                e.preventDefault();
-                const href = $(this).attr('href')
+                <script>
+                    $('#rcancel').on('click', function cancelar(e) {
+                        e.preventDefault();
+                        const href = $(this).attr('href')
 
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: 'btn btn-success',
-                        cancelButton: 'btn btn-danger'
-                    },
-                    buttonsStyling: false
-                })
-                swalWithBootstrapButtons.fire({
-                    title: '¿Estás seguro de cancelar la reserva?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si',
-                    cancelButtonText: 'No',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.location.href = href,
-                        swalWithBootstrapButtons.fire(
-                            'Cancelado',
-                            'Tu reserva fue cancelada',
-                            'success'
-                        )
-                        window.location='../../view/client/user-reserv.php'
-                    } else {
-                        return false;
-                    }
-                })
-                let ret = document.querySelectorAll("#rcancel");
-                for (var i = 0; i < ret.length; i++) {
-                    ret[i].addEventListener('click', cancelar);
-                }
-            })
-        </script>
+                        const swalWithBootstrapButtons = Swal.mixin({
+                            customClass: {
+                                confirmButton: 'btn btn-success',
+                                cancelButton: 'btn btn-danger'
+                            },
+                            buttonsStyling: false
+                        })
+                        swalWithBootstrapButtons.fire({
+                            title: '¿Estás seguro de cancelar la reserva?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Si',
+                            cancelButtonText: 'No',
+                            reverseButtons: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.location.href = href,
+                                    swalWithBootstrapButtons.fire(
+                                        'Cancelado',
+                                        'Tu reserva fue cancelada',
+                                        'success'
+                                    )
+                                window.location = '../../view/client/user-reserv.php'
+                            } else {
+                                return false;
+                            }
+                        })
+                        let ret = document.querySelectorAll("#rcancel");
+                        for (var i = 0; i < ret.length; i++) {
+                            ret[i].addEventListener('click', cancelar);
+                        }
+                    })
+                </script>
+            <?php endwhile; ?>
+        </div>
         <br>
         <!--RETIRADOS-->
         <h3 class="t-tk">Retirados (<?php echo $count2["conteo"] ?>)</h3>
