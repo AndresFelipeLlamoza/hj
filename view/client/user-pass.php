@@ -1,7 +1,7 @@
 <?php
-include ("../../model/conexion.php");
+include("../../model/conexion.php");
 session_start();
-if(!isset($_SESSION['usuario'])){
+if (!isset($_SESSION['usuario'])) {
     echo "<script>alert('Debes iniciar sesion');location='/hj/view/login.php';</script>";
     session_destroy();
     die();
@@ -10,6 +10,7 @@ if(!isset($_SESSION['usuario'])){
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,9 +20,11 @@ if(!isset($_SESSION['usuario'])){
     <link rel="stylesheet" href="/hj/css/dshbuser.css">
     <link rel="stylesheet" href="/hj/css/personaldata.css">
     <link rel="shortcut icon" href="/hj/images/icon.png" type="image/x-icon">
-    <script src="/hj/js/validation.js"></script>
+    <link rel="stylesheet" href="../../package/dist/sweetalert2.min.css">
+    <script src="../../js/jquery-3.6.1.min.js"></script>
     <title>Cambiar Contraseña | Huevos Jireth</title>
 </head>
+
 <body>
     <nav class="sidebar close">
         <!--LOGO-->
@@ -106,8 +109,8 @@ if(!isset($_SESSION['usuario'])){
                     <div class="modal-content">
                         <form action="../../model/updateContra.php" method="POST" onsubmit="return changepassword(event)">
                             <div class="modal-body">
-                                <?php foreach ($conx->query("SELECT * from usuarios WHERE Nombre = '".$_SESSION['usuario']."'") as $row){?>
-                                    <input type="hidden" value="<?php echo $row["idUsuario"] ?>" name="id">
+                                <?php foreach ($conx->query("SELECT * from usuarios WHERE Nombre = '" . $_SESSION['usuario'] . "'") as $row) { ?>
+                                    <input id="idc" type="hidden" value="<?php echo $row["idUsuario"] ?>" name="id">
                                     <div class="mb-3">
                                         <label class="col-form-label">Contraseña actual</label>
                                         <input id="passA" type="password" class="form-control" name="contraseñaAnterior">
@@ -119,7 +122,7 @@ if(!isset($_SESSION['usuario'])){
                                 <?php } ?>
                             </div>
                             <div class="modal-footer justify-content-center">
-                                <button type="submit" class="btn btn-warning">Cambiar</button>
+                                <button id="ac" type="submit" class="btn btn-warning">Cambiar</button>
                             </div>
                         </form>
                     </div>
@@ -129,6 +132,96 @@ if(!isset($_SESSION['usuario'])){
     </section>
 
     <script src="/hj/js/menu.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../package/dist/sweetalert2.all.js"></script>
+    <script src="../../package/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#ac').click(function(e) {
+                var valid = this.form.checkValidity();
+
+                if (valid) {
+                    var id = $('#idc').val();
+                    var pass1 = $('#passA').val();
+                    var pass2 = $('#passB').val();
+
+                    e.preventDefault();
+
+                    /*---VALIDACIONES---*/
+                    /*PASS1*/
+                    if (pass1 === "") {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Introduzca la contraseña actual',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    }
+
+                    /*PASS2*/
+                    if (pass2 === "") {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Digite la nueva contraseña',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    } else if (pass2.length < 5) {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'La contraseña nueva debe tener mínimo 5 caracteres',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    } else if (pass2.length > 10) {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'La contraseña debe ser como máximo 10 caracteres',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '../../model/update-pass.php',
+                        data: {
+                            pass1: pass1,
+                            pass2: pass2,
+                            id:id
+                        },
+                        success: function(data) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Contraseña Actualizada',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function() {
+                                window.location = '../../view/client/user-pass.php';
+                            });
+                        },
+                        error: function(data) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'ERROR',
+                                showConfirmButton: true,
+                                timer: 1500
+                            })
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 </body>
+
 </html>

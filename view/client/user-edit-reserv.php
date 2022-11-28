@@ -34,6 +34,8 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
     <link rel="shortcut icon" href="/hj/images/icon.png">
     <script src="/hj/js/jquery-3.6.1.min.js"></script>
     <script src="/hj/js/validation.js"></script>
+    <link rel="stylesheet" href="../../package/dist/sweetalert2.min.css">
+    <script src="../../js/jquery-3.6.1.min.js"></script>
     <title>Editar reserva | Huevos Jireth</title>
     <script>
         $(document).ready(function() {
@@ -137,61 +139,113 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
             <hr>
         </div>
         <div>
-        <?php while ($list = mysqli_fetch_assoc($ok)) { ?>
-            <form action="../../model/update-reserv.php" method="post">
-                <div class="row">
-                    <input type="hidden" value="<?php echo $list["idReserva"]?>" name="id" readonly>
-                    <div class="col">
-                        <label class="form-label">Producto</label>
-                        <select id="listproductos" class="form-select" name="product">
-                            <option value="<?php echo $list["Producto"] ?>"><?php echo $list["Producto"] ?></option>
-                            <?php while ($list2 = mysqli_fetch_assoc($ok2)) { ?>
-                            <option value="<?php echo $list2["Nombre"] ?>"><?php echo $list2["Nombre"] ?></option>
-                            <?php } ?>
-                        </select>
+            <?php while ($list = mysqli_fetch_assoc($ok)) { ?>
+                <form method="post">
+                    <div class="row">
+                        <input id="idr" type="hidden" value="<?php echo $list["idReserva"] ?>" name="id" readonly>
+                        <div class="col">
+                            <label class="form-label">Producto</label>
+                            <select id="listproductos" class="form-select" name="product">
+                                <option value="<?php echo $list["Producto"] ?>"><?php echo $list["Producto"] ?></option>
+                                <?php while ($list2 = mysqli_fetch_assoc($ok2)) { ?>
+                                    <option value="<?php echo $list2["Nombre"] ?>"><?php echo $list2["Nombre"] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Precio</label>
+                            <select id="listprecios" class="form-control" onselect="calcular()" name="price">
+                                <option value="<?php echo $list["Precio"] ?>"><?php echo $list["Precio"] ?></option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col">
-                        <label class="form-label">Precio</label>
-                        <select id="listprecios" class="form-control" onselect="calcular()" name="price">
-                            <option value="<?php echo $list["Precio"] ?>"><?php echo $list["Precio"] ?></option>
-                        </select>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">Fecha</label>
+                            <input id="fecha" class="form-control" type="date" name="date" min="<?php echo $hoy ?>" max="<?php echo $max ?>" value="<?php echo $list["Fecha"] ?>" required>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Hora</label>
+                            <input id="hora" class="form-control" type="time" min="07:00" max="21:00" name="time" value="<?php echo $list["Hora"] ?>" required>
+                        </div>
                     </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <label class="form-label">Fecha</label>
-                        <input class="form-control" type="date" name="date" min="<?php echo $hoy ?>" max="<?php echo $max?>" value="<?php echo $list["Fecha"] ?>" required>
+                    <br>
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Panales</label>
+                        <div class="col-sm-1 col-md-2">
+                            <input id="cantidad" type="number" class="form-control form-control-sm" name="amount" min="1" max="5" maxlength="1" oninput="calcular(); if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeypress="return rsv(event)" value="<?php echo $list["Cantidad"] ?>" required>
+                        </div>
                     </div>
-                    <div class="col">
-                        <label class="form-label">Hora</label>
-                        <input class="form-control" type="time" min="07:00" max="21:00" name="time" value="<?php echo $list["Hora"] ?>" required>
+                    <br>
+                    <label class="form-label">Valor total</label>
+                    <h3><span id="total">$ <?php echo $list["Total"] ?></span></h3>
+                    <br>
+                    <div class="footer-buttons">
+                        <button id="ar" type="submit" class="btn btn-primary">Actualizar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick=(window.history.back(-1))>Cancelar</button>
                     </div>
-                </div>
-                <br>
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Panales</label>
-                    <div class="col-sm-1 col-md-2">
-                        <input id="cantidad" type="number" class="form-control form-control-sm" name="amount" min="1" max="5" maxlength="1" oninput="calcular(); if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" onkeypress="return rsv(event)" value="<?php echo $list["Cantidad"] ?>" required>
-                    </div>
-                </div>
-                <br>
-                <label class="form-label">Valor total</label>
-                <h3><span id="total">$ <?php echo $list["Total"] ?></span></h3>
-                <br>
-                <div class="footer-buttons">
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
-                    <a href="../../view/client/user-reserv.php">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    </a>
-                </div>
-            </form>
-        <?php } ?>
+                </form>
+            <?php } ?>
         </div>
     </section>
 
     <script src="/hj/js/menu.js"></script>
     <script src="/hj/js/select.js"></script>
+    <script src="../../package/dist/sweetalert2.all.js"></script>
+    <script src="../../package/dist/sweetalert2.all.min.js"></script>
+    <!--ACTUALIZAR RESERVA-->
+    <script type="text/javascript">
+        $(function() {
+            $('#ar').click(function(e) {
+                var valid = this.form.checkValidity();
+
+                if (valid) {
+                    var id = $('#idr').val();
+                    var producto = $('#listproductos').val();
+                    var precio = $('#listprecios').val();
+                    var cantidad = $('#cantidad').val();
+                    var fecha = $('#fecha').val();
+                    var hora = $('#hora').val();
+
+                    e.preventDefault();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '../../model/update-reserv.php',
+                        data: {
+                            id: id,
+                            producto: producto,
+                            precio: precio,
+                            cantidad: cantidad,
+                            fecha: fecha,
+                            hora: hora
+                        },
+                        success: function(data) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Reserva Actualizada',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function() {
+                                window.location = '../../view/client/user-reserv.php';
+                            });
+                        },
+                        error: function(data) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'ERROR',
+                                showConfirmButton: true,
+                                timer: 1500
+                            })
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>

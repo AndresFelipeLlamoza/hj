@@ -23,6 +23,8 @@ $result = mysqli_query($conx, $query);
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="/hj/css/dshbadmin.css">
     <link rel="shortcut icon" href="/hj/images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../package/dist/sweetalert2.min.css">
+    <script src="../../js/jquery-3.6.1.min.js"></script>
     <title>Panel de Control (Reservas) | Huevos Jireth</title>
 </head>
 
@@ -128,17 +130,95 @@ $result = mysqli_query($conx, $query);
                             <td><?php echo $row["Hora"] ?></td>
                             <td><?php echo $row["Estado"] ?></td>
                             <td>
-                                <a href="../../model/update-state.php?id=<?php echo $row["idReserva"] ?>" style="text-decoration: none;">
-                                    <button id="rt" class="btn btn-warning btn-sm rr">Retirar</button>
+                                <a id="retirar" href="../../model/update-state.php?id=<?php echo $row["idReserva"] ?>" style="text-decoration: none;">
+                                    <button class="btn btn-warning btn-sm">Retirar</button>
                                 </a>
-                                <a href="../../model/cancel-reserv1.php?id=<?php echo $row["idReserva"] ?>" style="text-decoration: none;">
-                                    <button class="btn btn-danger btn-sm cr">Cancelar</button>
+                                <a id="cancelar" href="../../model/cancel-reserv1.php?id=<?php echo $row["idReserva"] ?>" style="text-decoration: none;">
+                                    <button class="btn btn-danger btn-sm">Cancelar</button>
                                 </a>
                             </td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
+            <!--SCRIPT-->
+            <script>
+                $('#retirar').on('click', function retirar(e) {
+                    e.preventDefault();
+                    const href = $(this).attr('href')
+
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-success',
+                            cancelButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: false
+                    })
+                    swalWithBootstrapButtons.fire({
+                        title: '¿Desea retirar la reserva?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Si',
+                        cancelButtonText: 'No',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location.href = href,
+                            swalWithBootstrapButtons.fire(
+                                'Cancelado',
+                                'Tu reserva fue cancelada',
+                                'success'
+                            )
+                            window.location='../../view/admin/admin-reservs.php'
+                        } else {
+                            return false;
+                        }
+                    })
+                    let ret = document.querySelectorAll("#retirar");
+                    for (var i = 0; i < ret.length; i++) {
+                        ret[i].addEventListener('click', retirar);
+                    }
+                })
+            </script>
+            <!---->
+            <script>
+                $('#cancelar').on('click', function cancelar(e) {
+                    e.preventDefault();
+                    const href = $(this).attr('href')
+
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-success',
+                            cancelButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: false
+                    })
+                    swalWithBootstrapButtons.fire({
+                        title: '¿Estás seguro de cancelar la reserva?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Si',
+                        cancelButtonText: 'No',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location.href = href,
+                            swalWithBootstrapButtons.fire(
+                                'Cancelado',
+                                'Tu reserva fue cancelada',
+                                'success'
+                            )
+                            window.location='../../view/admin/admin-reservs.php'
+                        } else {
+                            return false;
+                        }
+                    })
+                    let ret = document.querySelectorAll("#cancelar");
+                    for (var i = 0; i < ret.length; i++) {
+                        ret[i].addEventListener('click', cancelar);
+                    }
+                })
+            </script>
         </div>
         <!--OTRAS-->
         <hr>
@@ -320,6 +400,8 @@ $result = mysqli_query($conx, $query);
             });
         });
     </script>
+    <script src="../../package/dist/sweetalert2.all.js"></script>
+    <script src="../../package/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

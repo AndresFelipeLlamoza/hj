@@ -1,19 +1,28 @@
 <?php
 include("../model/conexion.php");
+if(isset($_POST)){
+    if(strlen($_POST['id'])>=1 &&
+    strlen($_POST['producto'])>=1 &&
+    strlen($_POST['precio'])>=1 &&
+    strlen($_POST['cantidad'])>=1 &&
+    strlen($_POST['fecha'])>=1 &&
+    strlen($_POST['hora'])>=1){
+        $id=trim($_POST['id']);
+        $producto=trim($_POST['producto']);
+        $precio=trim($_POST['precio']);
+        $cantidad=trim($_POST['cantidad']);
+        $fecha=trim($_POST['fecha']);
+        $hora=trim($_POST['hora']);
 
-$id=$_POST["id"];
-$producto=$_POST["product"];
-$precio=$_POST["price"];
-$cantidad=$_POST["amount"];
-$fecha=$_POST["date"];
-$hora=$_POST["time"];
-
-$update="UPDATE reservas SET Producto='$producto', Precio='$precio', Cantidad='$cantidad', Fecha='$fecha', Hora='$hora' WHERE idReserva='$id'";
-$result=mysqli_query($conx,$update);
-
-if($result){
-    echo "<script>alert('Reserva Actualizada');window.location='/hj/view/client/user-reserv.php';</script>";
-}else{
-    echo "<script>alert('No se pudo actualizar');window.history.go(-1);</script>";
+        $query="UPDATE reservas SET Producto='$producto', Precio='$precio', Cantidad='$cantidad', Fecha='$fecha', Hora='$hora' WHERE idReserva='$id'";
+        $result=mysqli_query($conx,$query);
+        if($result){
+            echo 'Bien';
+        }else{
+            echo 'Mal';
+        }
+    }else{
+        echo 'No Data';
+    }
 }
 ?>

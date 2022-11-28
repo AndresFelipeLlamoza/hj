@@ -196,11 +196,11 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
     <script src="../../package/dist/sweetalert2.all.js"></script>
     <script src="../../package/dist/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
-        $(function(){
-            $('#gr').click(function(e){
+        $(function() {
+            $('#gr').click(function(e) {
                 var valid = this.form.checkValidity();
 
-                if(valid){
+                if (valid) {
                     var nombre = $('#user_reserv').val();
                     var producto = $('#listproductos').val();
                     var precio = $('#listprecios').val();
@@ -211,27 +211,34 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                     e.preventDefault();
 
                     $.ajax({
-                        type:'POST',
-                        url:'../../model/create-reservation.php',
-                        data:{nombre:nombre, producto:producto, precio:precio, cantidad:cantidad, fecha:fecha, hora: hora},
-                        success: function(data){
+                        type: 'POST',
+                        url: '../../model/create-reservation.php',
+                        data: {
+                            nombre: nombre,
+                            producto: producto,
+                            precio: precio,
+                            cantidad: cantidad,
+                            fecha: fecha,
+                            hora: hora
+                        },
+                        success: function(data) {
                             Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Reserva Guardada',
-                            showConfirmButton: false,
-                            timer: 1500
-                            }).then(function(){
-                                window.location='../../view/client/user-reserv.php';
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Reserva Guardada',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function() {
+                                window.location = '../../view/client/user-reserv.php';
                             });
                         },
-                        error:function(data){
+                        error: function(data) {
                             Swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: 'ERROR',
-                            showConfirmButton: true,
-                            timer: 1500
+                                position: 'center',
+                                icon: 'error',
+                                title: 'ERROR',
+                                showConfirmButton: true,
+                                timer: 1500
                             })
                         }
                     })

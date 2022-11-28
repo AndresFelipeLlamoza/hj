@@ -39,6 +39,8 @@ $count3 = mysqli_fetch_assoc($check3);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="/hj/css/dshbuser.css">
     <link rel="shortcut icon" href="/hj/images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../package/dist/sweetalert2.min.css">
+    <script src="/hj/js/jquery-3.6.1.min.js"></script>
     <title>Mis Reservas | Huevos Jireth</title>
 </head>
 
@@ -141,17 +143,55 @@ $count3 = mysqli_fetch_assoc($check3);
                                 <li><b>Hora</b></li>
                                 <li><?php echo $row1["Hora"] ?></li>
                             </ul>
-                            <a href="../../view/client/user-edit-reserv.php?id=<?php echo $row1["idReserva"]?>" style="text-decoration: none;">
+                            <a href="../../view/client/user-edit-reserv.php?id=<?php echo $row1["idReserva"] ?>" style="text-decoration: none;">
                                 <button type="button" class="btn btn-mb btn-warning">Editar</button>
                             </a>
-                            <a href="../../model/cancel-reserv2.php?id=<?php echo $row1["idReserva"]?>" style="text-decoration: none;">
-                                <button type="button" class="btn btn-mb btn-danger cr">Cancelar</button>
+                            <a id="rcancel" href="../../model/cancel-reserv2.php?id=<?php echo $row1["idReserva"] ?>" style="text-decoration: none;">
+                                <button type="button" class="btn btn-mb btn-danger">Cancelar</button>
                             </a>
                         </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
+        <script>
+            $('#rcancel').on('click', function cancelar(e) {
+                e.preventDefault();
+                const href = $(this).attr('href')
+
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                })
+                swalWithBootstrapButtons.fire({
+                    title: '¿Estás seguro de cancelar la reserva?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Si',
+                    cancelButtonText: 'No',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.location.href = href,
+                        swalWithBootstrapButtons.fire(
+                            'Cancelado',
+                            'Tu reserva fue cancelada',
+                            'success'
+                        )
+                        window.location='../../view/client/user-reserv.php'
+                    } else {
+                        return false;
+                    }
+                })
+                let ret = document.querySelectorAll("#rcancel");
+                for (var i = 0; i < ret.length; i++) {
+                    ret[i].addEventListener('click', cancelar);
+                }
+            })
+        </script>
         <br>
         <!--RETIRADOS-->
         <h3 class="t-tk">Retirados (<?php echo $count2["conteo"] ?>)</h3>
@@ -209,8 +249,8 @@ $count3 = mysqli_fetch_assoc($check3);
     </section>
 
     <script src="/hj/js/menu.js"></script>
-    <script src="/hj/js/confirmation.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../package/dist/sweetalert2.all.js"></script>
+    <script src="../../package/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

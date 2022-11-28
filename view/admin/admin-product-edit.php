@@ -1,18 +1,19 @@
 <?php
-include ("../../model/conexion.php");
+include("../../model/conexion.php");
 session_start();
-if(!isset($_SESSION['usuario'])){
+if (!isset($_SESSION['usuario'])) {
     echo "<script>alert('Debes iniciar sesion');location='/hj/view/login.php';</script>";
     session_destroy();
     die();
 }
-$id=$_GET["id"];
-$query="SELECT * FROM productos WHERE idProducto='$id'";
-$ok=mysqli_query($conx,$query);
+$id = $_GET["id"];
+$query = "SELECT * FROM productos WHERE idProducto='$id'";
+$ok = mysqli_query($conx, $query);
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,9 +22,11 @@ $ok=mysqli_query($conx,$query);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="/hj/css/dshbadmin.css">
     <link rel="shortcut icon" href="/hj/images/icon.png" type="image/x-icon">
-    <script src="/hj/js/validation.js"></script>
+    <link rel="stylesheet" href="../../package/dist/sweetalert2.min.css">
+    <script src="../../js/jquery-3.6.1.min.js"></script>
     <title>Panel de Control (Editar Producto) | Huevos Jireth</title>
 </head>
+
 <body>
     <nav class="sidebar close">
         <!--LOGO-->
@@ -100,49 +103,210 @@ $ok=mysqli_query($conx,$query);
                 <h2>Editar Producto</h2>
             </div>
             <!--TABLA DE PRODUCTOS-->
-            <?php while($row=mysqli_fetch_assoc($ok)) { ?>
-            <form action="../../model/update-product.php" method="post" onsubmit="return product(event)">
-                <div class="mb-3 row">
-                    <div class="col-sm-10">
-                        <input type="hidden" class="form-control" value="<?php echo $row["idProducto"]?>" name="id" readonly>
+            <?php while ($row = mysqli_fetch_assoc($ok)) { ?>
+                <form method="post">
+                    <div class="mb-3 row">
+                        <div class="col-sm-10">
+                            <input id="idp" type="hidden" class="form-control" value="<?php echo $row["idProducto"] ?>" name="id" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Nombre</label>
-                    <div class="col-sm-10">
-                        <input id="nombreP" type="text" class="form-control" value="<?php echo $row["Nombre"]?>" name="name" onkeypress="return sololetras(event)">
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Nombre</label>
+                        <div class="col-sm-10">
+                            <input id="nombreP" type="text" class="form-control" value="<?php echo $row["Nombre"] ?>" name="name" onkeypress="return sololetras(event)">
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Precio</label>
-                    <div class="col-sm-10">
-                        <input id="precioP" type="text" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" value="<?php echo $row["Precio"]?>" name="price" onkeypress="return solonumeros(event)">
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Precio</label>
+                        <div class="col-sm-10">
+                            <input id="precioP" type="text" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" value="<?php echo $row["Precio"] ?>" name="price" onkeypress="return solonumeros(event)">
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Cantidad</label>
-                    <div class="col-sm-10">
-                        <input id="cantidadP" type="text" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" value="<?php echo $row["Cantidad"]?>" name="amount" onkeypress="return solonumeros(event)">
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Cantidad</label>
+                        <div class="col-sm-10">
+                            <input id="cantidadP" type="text" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" value="<?php echo $row["Cantidad"] ?>" name="amount" onkeypress="return solonumeros(event)">
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Descripción</label>
-                    <div class="col-sm-10">
-                        <input id="descP" type="text" class="form-control" value="<?php echo $row["Descripcion"]?>" name="desc">
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Descripción</label>
+                        <div class="col-sm-10">
+                            <input id="descP" type="text" class="form-control" value="<?php echo $row["Descripcion"] ?>" name="desc">
+                        </div>
                     </div>
-                </div>
-                <div class="footer-buttons">
-                    <button type="submit" class="btn btn-success btn-sm">Actualizar</button>
-                    <a style="text-decoration: none;" href="/hj/view/admin/admin-products.php">
-                        <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
-                    </a>
-                </div>
-            </form>
+                    <div class="footer-buttons">
+                        <button id="ap" type="submit" class="btn btn-success btn-sm">Actualizar</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="window.history.back(-1)">Cancelar</button>
+                    </div>
+                </form>
             <?php } ?>
         </div>
     </section>
 
     <script src="/hj/js/menu.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../package/dist/sweetalert2.all.js"></script>
+    <script src="../../package/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#ap').click(function(e) {
+                var valid = this.form.checkValidity();
+
+                if (valid) {
+                    var id = $('#idp').val();
+                    var producto = $('#nombreP').val();
+                    var precio = $('#precioP').val();
+                    var cantidad = $('#cantidadP').val();
+                    var descripcion = $('#descP').val();
+
+                    e.preventDefault();
+
+                    /*---VALIDACIONES---*/
+                    /*NOMBRE*/
+                    if (producto === "") {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Introduzca el nombre del producto',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    } else if (producto.length < 15) {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'El nombre es corto',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    } else if (producto.length > 20) {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'El nombre es muy largo',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    }
+
+                    /*PRECIO*/
+                    if (precio === "") {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Introduzca el precio',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    } else if (precio.length < 4) {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'El precio debe ser mayor de 3 digitos',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    } else if (precio > 30000) {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'El precio no debe superar de los $30.000',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    }
+
+                    /*CANTIDAD*/
+                    if (cantidad === "") {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Introduzca la cantidad',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    } else if (cantidad > 150) {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'La cantidad no debe superar a los 150',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    }
+
+                    /*DESCRIPCION*/
+                    if (descripcion === "") {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Introduzca la descripción',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    } else if (descripcion.length < 18) {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'La descripción es corta',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    } else if (descripcion.length > 300) {
+                        swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'La descripción es demasiada larga',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        return false;
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '../../model/update-product.php',
+                        data: {
+                            id: id,
+                            producto: producto,
+                            precio: precio,
+                            cantidad: cantidad,
+                            descripcion: descripcion
+                        },
+                        success: function(data) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Producto Actualizado',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function() {
+                                window.location = '../../view/admin/admin-products.php';
+                            });
+                        },
+                        error: function(data) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'ERROR',
+                                showConfirmButton: true,
+                                timer: 1500
+                            })
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 </body>
+
 </html>
