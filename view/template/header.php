@@ -28,9 +28,6 @@
 						<a class="nav-link selector" style="color:black;" href="#productos">Productos</a>
 					</li>
 					<li class="nav-item selector">
-						<a class="nav-link selector " style="color:black;" href="#reservar">Reservar</a>
-					</li>
-					<li class="nav-item selector">
 						<a class="nav-link selector" style="color:black;" href="#recetas">Recetas</a>
 					</li>
 					<li class="nav-item selector">

@@ -231,11 +231,11 @@ $ok = mysqli_query($conx, $query);
                             timer: 3000
                         });
                         return false;
-                    } else if (cantidad > 150) {
+                    } else if (cantidad > 300) {
                         swal.fire({
                             position: 'center',
                             icon: 'warning',
-                            title: 'La cantidad no debe superar a los 150',
+                            title: 'La cantidad no debe superar a los 300',
                             showConfirmButton: false,
                             timer: 3000
                         });

@@ -60,6 +60,9 @@ $I = array(
                     <h1><?php echo $row["Nombre"] ?></h1>
                     <h4 id="coin">$<?php echo $row["Precio"] ?></h4>
                     <p style="color: greenyellow">Cantidad disponible: <?php echo $row["Cantidad"] ?> Panales</p>
+                    <?php if($row["Cantidad"]==0){
+                        echo "<span>No Disponible</span>";
+                    } ?>
                     <p><?php echo $row["Descripcion"] ?></p>
                 </div>
             <?php }
@@ -105,15 +108,6 @@ $I = array(
     </section>
 
     <script src="/hj/js/modal-home.js"></script>
-    <script type="text/javascript">
-        const x = document.getElementById("coin").innerHTML;
-        const cop = new Intl.NumberFormat('es-CO',{
-        style:'currency',
-        currency:'COP',
-        minimumFractionDigits:0
-        })
-        console.log(cop.format(x))
-    </script>
 </body>
 
 </html>

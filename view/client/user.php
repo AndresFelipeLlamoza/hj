@@ -93,6 +93,9 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                     <h1><?php echo $row["Nombre"] ?></h1>
                     <h4>$<?php echo $row["Precio"] ?></h4>
                     <p style="color: greenyellow">Cantidad disponible: <?php echo $row["Cantidad"] ?> Panales</p>
+                    <?php if($row["Cantidad"]==0){
+                        echo "<span>No Disponible</span>";
+                    } ?>
                     <p><?php echo $row["Descripcion"] ?></p>
                 </div>
             <?php }

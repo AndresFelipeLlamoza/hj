@@ -14,7 +14,7 @@ $np = "SELECT Producto AS nomp FROM reservas WHERE idReserva='$id'";
 $npq = mysqli_query($conx, $np);
 $npf = mysqli_fetch_assoc($npq);
 //
-$prd = "SELECT * FROM productos WHERE Nombre !='$npf[nomp]'";
+$prd = "SELECT * FROM productos WHERE Nombre !='$npf[nomp]' AND Cantidad>=1";
 $ok2 = mysqli_query($conx, $prd);
 
 $hoy = date('Y-m-d');
@@ -244,6 +244,13 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                     })
                 }
             })
+        })
+    </script>
+    <script type="text/javascript">
+        $('#cantidad').keypress(function(e){
+            if(event.which<2 || this.value.length===2){
+                return false;
+            }
         })
     </script>
 </body>

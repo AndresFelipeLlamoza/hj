@@ -132,7 +132,7 @@ $count3 = mysqli_fetch_assoc($check3);
                             <h4 class="my-0 fw-normal"><?php echo $row1["Estado"] ?></h4>
                         </div>
                         <div class="card-body">
-                            <h2 class="card-title pricing-card-title">$<?php echo $row1["Total"] ?></h2>
+                            <h2 id="coin" class="card-title pricing-card-title"><?php echo $row1["Total"] ?></h2>
                             <ul class="list-unstyled mt-3 mb-4">
                                 <li><b>Producto</b></li>
                                 <li><?php echo $row1["Producto"] ?></li>
@@ -147,13 +147,13 @@ $count3 = mysqli_fetch_assoc($check3);
                                 <button type="button" class="btn btn-mb btn-warning">Editar</button>
                             </a>
                             <a id="rcancel" href="../../model/cancel-reserv2.php?id=<?php echo $row1["idReserva"] ?>" style="text-decoration: none;">
-                                <button type="button" class="btn btn-mb btn-danger">Cancelar</button>
+                                <button type="button" class="btn btn-mb btn-danger" onclick="cancelar(event)">Cancelar</button>
                             </a>
                         </div>
                     </div>
                 </div>
                 <script>
-                    $('#rcancel').on('click', function cancelar(e) {
+                    function cancelar(e) {
                         e.preventDefault();
                         const href = $(this).attr('href')
 
@@ -180,15 +180,13 @@ $count3 = mysqli_fetch_assoc($check3);
                                         'success'
                                     )
                                 window.location = '../../view/client/user-reserv.php'
-                            } else {
-                                return false;
                             }
                         })
                         let ret = document.querySelectorAll("#rcancel");
                         for (var i = 0; i < ret.length; i++) {
                             ret[i].addEventListener('click', cancelar);
                         }
-                    })
+                    }
                 </script>
             <?php endwhile; ?>
         </div>
@@ -251,6 +249,13 @@ $count3 = mysqli_fetch_assoc($check3);
     <script src="/hj/js/menu.js"></script>
     <script src="../../package/dist/sweetalert2.all.js"></script>
     <script src="../../package/dist/sweetalert2.all.min.js"></script>
+    <script>
+        const cop = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0
+        })
+    </script>
 </body>
 
 </html>

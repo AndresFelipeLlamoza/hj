@@ -131,10 +131,10 @@ $result = mysqli_query($conx, $query);
                             <td><?php echo $row["Estado"] ?></td>
                             <td>
                                 <a id="retirar" href="../../model/update-state.php?id=<?php echo $row["idReserva"] ?>" style="text-decoration: none;">
-                                    <button class="btn btn-warning btn-sm">Retirar</button>
+                                    <button class="btn btn-warning btn-sm" onclick="retirar(event)">Retirar</button>
                                 </a>
                                 <a id="cancelar" href="../../model/cancel-reserv1.php?id=<?php echo $row["idReserva"] ?>" style="text-decoration: none;">
-                                    <button class="btn btn-danger btn-sm">Cancelar</button>
+                                    <button class="btn btn-danger btn-sm" onclick="cancelar(event)">Cancelar</button>
                                 </a>
                             </td>
                         </tr>
@@ -143,7 +143,7 @@ $result = mysqli_query($conx, $query);
             </table>
             <!--SCRIPT-->
             <script>
-                $('#retirar').on('click', function retirar(e) {
+                function retirar(e) {
                     e.preventDefault();
                     const href = $(this).attr('href')
 
@@ -170,19 +170,17 @@ $result = mysqli_query($conx, $query);
                                 'success'
                             )
                             window.location='../../view/admin/admin-reservs.php'
-                        } else {
-                            return false;
                         }
                     })
                     let ret = document.querySelectorAll("#retirar");
                     for (var i = 0; i < ret.length; i++) {
                         ret[i].addEventListener('click', retirar);
                     }
-                })
+                }
             </script>
             <!---->
             <script>
-                $('#cancelar').on('click', function cancelar(e) {
+                function cancelar(e) {
                     e.preventDefault();
                     const href = $(this).attr('href')
 
@@ -209,15 +207,13 @@ $result = mysqli_query($conx, $query);
                                 'success'
                             )
                             window.location='../../view/admin/admin-reservs.php'
-                        } else {
-                            return false;
                         }
                     })
                     let ret = document.querySelectorAll("#cancelar");
                     for (var i = 0; i < ret.length; i++) {
                         ret[i].addEventListener('click', cancelar);
                     }
-                })
+                }
             </script>
         </div>
         <!--OTRAS-->
