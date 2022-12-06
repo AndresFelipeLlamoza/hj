@@ -59,7 +59,9 @@ $I = array(
                     <?php $nImg = $nImg + 1; ?>
                     <h1><?php echo $row["Nombre"] ?></h1>
                     <h4 id="coin">$<?php echo $row["Precio"] ?></h4>
-                    <p style="color: greenyellow">Cantidad disponible: <?php echo $row["Cantidad"] ?> Panales</p>
+                    <p style="color: greenyellow">
+                        Cantidad disponible: <?php echo $row["Cantidad"] ?> <?php if($row["Cantidad"]==1){echo 'Panal';}else{echo 'Panales';} ?>
+                    </p>
                     <?php if($row["Cantidad"]==0){
                         echo "<span>No Disponible</span>";
                     } ?>

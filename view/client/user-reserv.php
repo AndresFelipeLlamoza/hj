@@ -132,12 +132,12 @@ $count3 = mysqli_fetch_assoc($check3);
                             <h4 class="my-0 fw-normal"><?php echo $row1["Estado"] ?></h4>
                         </div>
                         <div class="card-body">
-                            <h2 id="coin" class="card-title pricing-card-title"><?php echo $row1["Total"] ?></h2>
+                            <h2 id="coin" class="card-title pricing-card-title">$<?php echo $row1["Total"] ?></h2>
                             <ul class="list-unstyled mt-3 mb-4">
                                 <li><b>Producto</b></li>
                                 <li><?php echo $row1["Producto"] ?></li>
                                 <li><b>Cantidad</b></li>
-                                <li><?php echo $row1["Cantidad"] ?> panales</li>
+                                <li><?php echo $row1["Cantidad"] ?> <?php if($row1["Cantidad"]==1){echo 'Panal';}else{echo 'Panales';} ?></li>
                                 <li><b>Fecha</b></li>
                                 <li><?php echo $row1["Fecha"] ?></li>
                                 <li><b>Hora</b></li>
@@ -206,7 +206,7 @@ $count3 = mysqli_fetch_assoc($check3);
                                 <li><b>Producto</b></li>
                                 <li><?php echo $row2["Producto"] ?></li>
                                 <li><b>Cantidad</b></li>
-                                <li><?php echo $row2["Cantidad"] ?> panales</li>
+                                <li><?php echo $row2["Cantidad"] ?> <?php if($row2["Cantidad"]==1){echo 'Panal';}else{echo 'Panales';} ?></li>
                                 <li><b>Fecha</b></li>
                                 <li><?php echo $row2["Fecha"] ?></li>
                                 <li><b>Hora</b></li>
@@ -233,7 +233,7 @@ $count3 = mysqli_fetch_assoc($check3);
                                 <li><b>Producto</b></li>
                                 <li><?php echo $row3["Producto"] ?></li>
                                 <li><b>Cantidad</b></li>
-                                <li><?php echo $row3["Cantidad"] ?> panales</li>
+                                <li><?php echo $row3["Cantidad"] ?> <?php if($row3["Cantidad"]==1){echo 'Panal';}else{echo 'Panales';} ?></li>
                                 <li><b>Fecha</b></li>
                                 <li><?php echo $row3["Fecha"] ?></li>
                                 <li><b>Hora</b></li>
