@@ -119,13 +119,13 @@ $ok = mysqli_query($conx, $query);
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Precio</label>
                         <div class="col-sm-10">
-                            <input id="precioP" type="text" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" value="<?php echo $row["Precio"] ?>" name="price" onkeypress="return solonumeros(event)">
+                            <input id="precioP" type="number" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" value="<?php echo $row["Precio"] ?>" name="price" onkeypress="return solonumeros(event)">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label">Cantidad</label>
+                        <label class="col-sm-2 col-form-label">Cantidad en panales</label>
                         <div class="col-sm-10">
-                            <input id="cantidadP" type="text" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" value="<?php echo $row["Cantidad"] ?>" name="amount" onkeypress="return solonumeros(event)">
+                            <input id="cantidadP" type="number" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" value="<?php echo $row["Cantidad"] ?>" name="amount" onkeypress="return solonumeros(event)">
                         </div>
                     </div>
                     <div class="mb-3 row">

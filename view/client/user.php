@@ -152,8 +152,17 @@ $max = date('Y-m-d', strtotime($hoy . '+2 days'));
                                 </div>
                             </div>
                             <br>
-                            <label class="form-label">Valor total</label>
-                            <h3><span id="total">$ 0</span></h3>
+                            <div class="row d-flex">
+                                <div class="col">
+                                    <label class="form-label">Valor total</label>
+                                    <h3><span id="total">$ 0</span></h3>
+                                </div>
+                                <div class="col">
+                                    <i class="horario"><u>Horarios de atención:</u></i><br>
+                                    <i class="horario">Lunes a Sábados: 7:00a.m - 9:00p.m</i>
+                                    <i class="horario">Domingos: 7:00a.m - 12:00p.m</i>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button id="gr" type="submit" class="btn btn-success">Reservar</button>

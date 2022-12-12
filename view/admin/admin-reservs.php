@@ -138,6 +138,16 @@ $result = mysqli_query($conx, $query);
                                 </a>
                             </td>
                         </tr>
+                        <!-- CANCELACION AUTOMATICA -->
+                        <?php
+                            $id=$row["idReserva"];
+                            $hoy = date('Y-m-d');
+                            $ex = $row["Fecha"];
+
+                            if ($hoy > $ex) {
+                                $zz=mysqli_query($conx,"UPDATE reservas SET Estado='Cancelado' WHERE idReserva='$id'");
+                            }
+                        ?>
                     <?php endwhile; ?>
                 </tbody>
             </table>
@@ -164,12 +174,12 @@ $result = mysqli_query($conx, $query);
                     }).then((result) => {
                         if (result.isConfirmed) {
                             document.location.href = href,
-                            swalWithBootstrapButtons.fire(
-                                'Cancelado',
-                                'Tu reserva fue cancelada',
-                                'success'
-                            )
-                            window.location='../../view/admin/admin-reservs.php'
+                                swalWithBootstrapButtons.fire(
+                                    'Retirado',
+                                    'La reserva fue retirada exitosamente',
+                                    'success'
+                                )
+                            window.location = '../../view/admin/admin-reservs.php'
                         }
                     })
                     let ret = document.querySelectorAll("#retirar");
@@ -201,12 +211,12 @@ $result = mysqli_query($conx, $query);
                     }).then((result) => {
                         if (result.isConfirmed) {
                             document.location.href = href,
-                            swalWithBootstrapButtons.fire(
-                                'Cancelado',
-                                'Tu reserva fue cancelada',
-                                'success'
-                            )
-                            window.location='../../view/admin/admin-reservs.php'
+                                swalWithBootstrapButtons.fire(
+                                    'Cancelado',
+                                    'La reserva fue cancelada exitosamente',
+                                    'success'
+                                )
+                            window.location = '../../view/admin/admin-reservs.php'
                         }
                     })
                     let ret = document.querySelectorAll("#cancelar");

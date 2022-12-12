@@ -1,10 +1,27 @@
 <?php
 require('fpdf.php');
 include ('conexion.php');
-$consulta = "SELECT * FROM reservas WHERE Estado ='Retirado'";
+
+if(strlen($_GET['desde'])>0 && strlen($_GET['hasta'])>0 && strlen($_GET['producto'])>0){
+    $desde = $_GET['desde'];
+    $hasta = $_GET['hasta'];
+    $prod = trim($_GET['producto']);
+
+    $verDesde = date('d-m-y', strtotime($desde));
+    $verHasta = date('d-m-y', strtotime($hasta));
+}else{
+    $desde = '1111-01-01';
+    $hasta = '9999-12-30';
+
+    $verDesde = '___/__/____';
+    $verHasta = '___/__/____';
+    
+}
+
+$consulta = "SELECT * FROM reservas WHERE Estado!='Vigente' AND Fecha BETWEEN '$desde' AND '$hasta' AND Producto='$prod'";
 $resultado = mysqli_query($conx, $consulta);
 $total=0;
-$consulta2 = "SELECT Producto, SUM(Cantidad) FROM reservas WHERE Estado='Retirado'";
+$consulta2 = "SELECT Producto, SUM(Cantidad) FROM reservas WHERE Estado='Retirado' AND Fecha BETWEEN '$desde' AND '$hasta' AND Producto='$prod'";
 $resultado2 = mysqli_query($conx, $consulta2);
 
 class PDF extends FPDF
@@ -22,8 +39,8 @@ function Header()
     $this->Cell(70,10,'Reporte de las reservas',0,0,'C');
      // Salto de línea
     $this->Ln(7);
-    $this->Cell(195,10,'Retiradas',0,0,'C');
-     // Salto de línea
+    // $this->Cell(195,10,'Retiradas',0,0,'C');
+    // Salto de línea
     $this->Ln(30);
     $this->Cell(65, 10, 'Producto', 1, 0, 'C', 0);
     $this->Cell(20, 10, 'Precio', 1, 0, 'C', 0);
@@ -61,7 +78,7 @@ foreach ($conx -> query($consulta) as $row){
     $pdf->Cell(20, 10, $row['Precio'], 1, 0, 'C', 0);
     $pdf->Cell(25, 10, $row['Cantidad'], 1, 0, 'C', 0);
     $pdf->Cell(20, 10, $row['Total'], 1, 0, 'C', 0);
-    $pdf->Cell(30, 10, $row['Fecha'], 1, 0, 'C', 0);
+    $pdf->Cell(30, 10, date('d-m-y', strtotime($row['Fecha'])), 1, 0, 'C', 0);
     $pdf->Cell(30, 10, $row['Estado'], 1, 1, 'C', 0);
     $total=$total+$row['Total'];
     

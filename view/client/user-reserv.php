@@ -137,7 +137,7 @@ $count3 = mysqli_fetch_assoc($check3);
                                 <li><b>Producto</b></li>
                                 <li><?php echo $row1["Producto"] ?></li>
                                 <li><b>Cantidad</b></li>
-                                <li><?php echo $row1["Cantidad"] ?> <?php if($row1["Cantidad"]==1){echo 'Panal';}else{echo 'Panales';} ?></li>
+                                <li><?php echo $row1["Cantidad"] ?> <?php if ($row1["Cantidad"] == 1) {echo 'Panal';} else {echo 'Panales';} ?></li>
                                 <li><b>Fecha</b></li>
                                 <li><?php echo $row1["Fecha"] ?></li>
                                 <li><b>Hora</b></li>
@@ -149,6 +149,16 @@ $count3 = mysqli_fetch_assoc($check3);
                             <a id="rcancel" href="../../model/cancel-reserv2.php?id=<?php echo $row1["idReserva"] ?>" style="text-decoration: none;">
                                 <button type="button" class="btn btn-mb btn-danger" onclick="cancelar(event)">Cancelar</button>
                             </a>
+                            <!-- CANCELACION AUTOMATICA -->
+                            <?php
+                                $id=$row1["idReserva"];
+                                $hoy = date('Y-m-d');
+                                $ex = $row1["Fecha"];
+
+                                if ($hoy > $ex) {
+                                    $zz=mysqli_query($conx,"UPDATE reservas SET Estado='Cancelado' WHERE idReserva='$id'");
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -176,7 +186,7 @@ $count3 = mysqli_fetch_assoc($check3);
                                 document.location.href = href,
                                     swalWithBootstrapButtons.fire(
                                         'Cancelado',
-                                        'Tu reserva fue cancelada',
+                                        'Tu reserva fue cancelada exitosamente',
                                         'success'
                                     )
                                 window.location = '../../view/client/user-reserv.php'
@@ -206,7 +216,11 @@ $count3 = mysqli_fetch_assoc($check3);
                                 <li><b>Producto</b></li>
                                 <li><?php echo $row2["Producto"] ?></li>
                                 <li><b>Cantidad</b></li>
-                                <li><?php echo $row2["Cantidad"] ?> <?php if($row2["Cantidad"]==1){echo 'Panal';}else{echo 'Panales';} ?></li>
+                                <li><?php echo $row2["Cantidad"] ?> <?php if ($row2["Cantidad"] == 1) {
+                                                                        echo 'Panal';
+                                                                    } else {
+                                                                        echo 'Panales';
+                                                                    } ?></li>
                                 <li><b>Fecha</b></li>
                                 <li><?php echo $row2["Fecha"] ?></li>
                                 <li><b>Hora</b></li>
@@ -233,7 +247,11 @@ $count3 = mysqli_fetch_assoc($check3);
                                 <li><b>Producto</b></li>
                                 <li><?php echo $row3["Producto"] ?></li>
                                 <li><b>Cantidad</b></li>
-                                <li><?php echo $row3["Cantidad"] ?> <?php if($row3["Cantidad"]==1){echo 'Panal';}else{echo 'Panales';} ?></li>
+                                <li><?php echo $row3["Cantidad"] ?> <?php if ($row3["Cantidad"] == 1) {
+                                                                        echo 'Panal';
+                                                                    } else {
+                                                                        echo 'Panales';
+                                                                    } ?></li>
                                 <li><b>Fecha</b></li>
                                 <li><?php echo $row3["Fecha"] ?></li>
                                 <li><b>Hora</b></li>

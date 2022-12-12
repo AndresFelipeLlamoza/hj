@@ -14,9 +14,9 @@
 /*--------------------------------------------------PRODUCTOS--------------------------------------------------*/
 
 .barrita{
-     background:var(--body-color);
-     padding: 12px;
-     margin-top: 20px;
+    background:var(--body-color);
+    padding: 12px;
+    margin-top: 20px;
     text-align: center;
     border-top: 1px solid var(--primary-color);
     border-bottom: 1px solid var(--primary-color);
@@ -138,6 +138,11 @@ box-shadow: 0px 4px 13px -1px rgba(0,0,0,0.75);
 .re:hover{
     background-color: rgba(255, 221, 0, 0.912);
     color: rgb(255, 255, 255);
+}
+
+.horario{
+    font-size: 12px;
+    color: red;
 }
 
 

@@ -12,6 +12,11 @@ if(isset($_POST)){
         }else{
             echo 'Mal';
         }
+        //
+        $sql1=mysqli_query($conx,"SELECT Nombre AS nam FROM usuarios WHERE idUsuario='$id'");
+        $xx=mysqli_fetch_array($sql1);
+        $sql2=mysqli_query($conx,"UPDATE mensajes SET Correo='$correo' WHERE Nombre='{$xx['nam']}'");
+        //
     }else{
         echo 'No Data';
     }
