@@ -122,7 +122,7 @@ $result = mysqli_query($conx, $query);
                     <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                         <tr>
                             <td><?php echo $row["Cliente"] ?></td>
-                            <td><?php echo $row["Producto"] ?></td>
+                            <td><?php echo $row["Producto"]; ?></td>
                             <td>$<?php echo $row["Precio"] ?></td>
                             <td><?php echo $row["Cantidad"] ?></td>
                             <td>$<?php echo $row["Total"] ?></td>
@@ -140,11 +140,13 @@ $result = mysqli_query($conx, $query);
                         </tr>
                         <!-- CANCELACION AUTOMATICA -->
                         <?php
-                            $id=$row["idReserva"];
-                            $hoy = date('Y-m-d');
-                            $ex = $row["Fecha"];
+                            $hoy=date('Y-m-d');
+                            $ahora=time();
+                            $id = $row["idReserva"];
+                            $ez = $row["Fecha"];
+                            $ex = $row["Hora"];
 
-                            if ($hoy > $ex) {
+                            if ($hoy > $ez and $ahora > $ex) {
                                 $zz=mysqli_query($conx,"UPDATE reservas SET Estado='Cancelado' WHERE idReserva='$id'");
                             }
                         ?>

@@ -19,6 +19,7 @@ if (!isset($_SESSION['usuario'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="/hj/css/dshbadmin.css">
     <link rel="shortcut icon" href="/hj/images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../package/dist/sweetalert2.min.css">
     <title>Panel de Control | Huevos Jireth</title>
 </head>
 
@@ -155,7 +156,7 @@ if (!isset($_SESSION['usuario'])) {
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="form-label"><b></b></label><br>
-                        <a href="/hj/view/admin/admin-home.php/#querys">
+                        <a href="/hj/view/admin/admin-home.php">
                             <button class="btn btn-success" type="button"><i class='bx bxs-brush'></i> Limpiar</button>
                         </a>
                     </div>
@@ -183,7 +184,7 @@ if (!isset($_SESSION['usuario'])) {
                         $to = $_GET['fecha_fin'];
                         $pro = $_GET['producto'];
 
-                        $query = mysqli_query($conx, "SELECT * FROM reservas WHERE Fecha BETWEEN '$from' AND '$to' AND Estado!='Vigente' AND Producto='$pro'");
+                        $query = mysqli_query($conx, "SELECT * FROM reservas WHERE Fecha BETWEEN '$from' AND '$to' AND Estado='Retirado' AND Producto='$pro'");
 
                         //////////////////////////////////////////////////
                         $count1 = mysqli_query($conx, "SELECT COUNT(*) AS conteo FROM reservas WHERE Fecha BETWEEN '$from' AND '$to' AND Estado='Retirado' AND Producto='$pro'");
@@ -194,10 +195,8 @@ if (!isset($_SESSION['usuario'])) {
                         $ok3 = mysqli_fetch_assoc($count3);
                         $count4 = mysqli_query($conx, "SELECT Cliente AS persona, COUNT(Cliente) AS maximo FROM reservas WHERE Fecha BETWEEN '$from' AND '$to' AND Estado='Retirado' AND Producto='$pro' GROUP BY Cliente HAVING maximo=COUNT(Cliente) ORDER BY maximo DESC LIMIT 1");
                         $ok4 = mysqli_fetch_assoc($count4);
-                        $ok5 = mysqli_query($conx, "SELECT Producto AS producto FROM reservas WHERE Fecha BETWEEN '$from' AND '$to' AND Estado!='Vigente' AND Producto='$pro'");
+                        $ok5 = mysqli_query($conx, "SELECT Producto AS producto FROM reservas WHERE Fecha BETWEEN '$from' AND '$to' AND Estado='Retirado' AND Producto='$pro'");
                         $ok5 = mysqli_fetch_assoc($ok5);
-                        $count6 = mysqli_query($conx, "SELECT COUNT(*) AS cancel FROM reservas WHERE Fecha BETWEEN '$from' AND '$to' AND Estado='Cancelado' AND Producto='$pro'");
-                        $ok6 = mysqli_fetch_assoc($count6);
                         //////////////////////////////////////////////////
 
                         if (mysqli_num_rows($query) > 0) {
@@ -231,11 +230,10 @@ if (!isset($_SESSION['usuario'])) {
             </table>
             <p><b>Tipo de producto:</b> <?php if (isset($ok5)) {echo $ok5['producto'];} {echo '';} ?></p>
             <p><b>Reservas retiradas:</b> <?php if (isset($ok1)) {echo $ok1['conteo'];} else {echo '';} ?></p>
-            <p><b>Reservas canceladas:</b> <?php if (isset($ok6)) {echo $ok6['cancel'];} else {echo '';} ?></p>
             <p><b>Panales vendidos:</b> <?php if (isset($ok2)) {echo $ok2['cantidad'];} else {echo '';} ?></p>
-            <p><b>Ganacias totales:</b> $<?php if (isset($ok3)) {echo $ok3['ganancia'];} else {echo '';} ?></p>
+            <p><b>Ganacias totales:</b> <?php if (isset($ok3)) {echo '$',$ok3['ganancia'];} else {echo '';} ?></p>
             <p><b>Cliente regular:</b> <?php if (isset($ok4)) {echo $ok4['persona'];} else {echo '';} ?></p>
-            <a class="btn btn-danger" onclick="reportePDF()"><i class='bx bxs-file-pdf'></i> Descargar PDF</a>
+            <a class="btn btn-danger" onclick="reportePDF()"><i class='bx bxs-file-pdf'></i> Exportar PDF</a>
         </div>
         <hr>
         <br>
@@ -282,7 +280,7 @@ if (!isset($_SESSION['usuario'])) {
 
                             if (mysqli_num_rows($sql) > 0) {
                                 foreach ($sql as $dato) {
-                        ?>
+                                    ?>
                                     <tr>
                                         <td><?php echo $dato["Producto"] ?></td>
                                         <td>$<?php echo $dato["Precio"] ?></td>
@@ -298,7 +296,7 @@ if (!isset($_SESSION['usuario'])) {
                                 ?>
                                 <tr>
                                     <td rowspan="7">
-                                        <?php echo 'No se encontró al cliente ', $client; ?>
+                                        <?php echo 'No se encontró al cliente ',$client; ?>
                                     </td>
                                 </tr>
                         <?php
@@ -321,16 +319,22 @@ if (!isset($_SESSION['usuario'])) {
             var desde = $('#desde').val();
             var hasta = $('#hasta').val();
             var prod = $('#producto').val();
+
+            if(desde==="" && hasta==="" && prod===""){
+                swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Defina el rango de fecha y seleccione un tipo de producto',
+                    howConfirmButton: true,
+                });
+                return false;
+            }
+
             window.open('/hj/model/reportreserv.php?desde='+desde+'&hasta='+hasta+'&producto='+prod)
         }
     </script>
-    <script type="text/javascript">
-        function clean(){
-            var x1 = document.getElementById("desde").value='';
-            var x2 = document.getElementById("hasta").value='';
-            var x3 = document.getElementById("producto").value='';
-        }
-    </script>
+    <script src="../../package/dist/sweetalert2.all.js"></script>
+    <script src="../../package/dist/sweetalert2.all.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ("conexion.php");
+include ("swal.php");
 
 $nombre=$_POST["user"];
 $contraseña=$_POST["password"];
@@ -16,5 +17,16 @@ if($result["idRol"]==2){
     $_SESSION['usuario']=$nombre;
     header ("location:../view/client/user.php");
 }else{
-    echo "<script>alert('Nombre o contraseña equivocada');window.history.go(-1);</script>";
+    echo "<script>Swal.fire({
+        title: 'Hubo un problema',
+        text: 'Nombre o contraseña incorrecta',
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.history.go(-1);
+            }
+        })
+    </script>";
 }

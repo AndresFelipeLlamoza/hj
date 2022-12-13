@@ -151,11 +151,13 @@ $count3 = mysqli_fetch_assoc($check3);
                             </a>
                             <!-- CANCELACION AUTOMATICA -->
                             <?php
-                                $id=$row1["idReserva"];
-                                $hoy = date('Y-m-d');
-                                $ex = $row1["Fecha"];
+                                $hoy=date('Y-m-d');
+                                $ahora=time();
+                                $id = $row1["idReserva"];
+                                $ez = $row1["Fecha"];
+                                $ex = $row1["Hora"];
 
-                                if ($hoy > $ex) {
+                                if ($hoy > $ez and $ahora > $ex) {
                                     $zz=mysqli_query($conx,"UPDATE reservas SET Estado='Cancelado' WHERE idReserva='$id'");
                                 }
                             ?>
@@ -216,11 +218,7 @@ $count3 = mysqli_fetch_assoc($check3);
                                 <li><b>Producto</b></li>
                                 <li><?php echo $row2["Producto"] ?></li>
                                 <li><b>Cantidad</b></li>
-                                <li><?php echo $row2["Cantidad"] ?> <?php if ($row2["Cantidad"] == 1) {
-                                                                        echo 'Panal';
-                                                                    } else {
-                                                                        echo 'Panales';
-                                                                    } ?></li>
+                                <li><?php echo $row2["Cantidad"] ?> <?php if ($row2["Cantidad"] == 1) {echo 'Panal';} else {echo 'Panales';} ?></li>
                                 <li><b>Fecha</b></li>
                                 <li><?php echo $row2["Fecha"] ?></li>
                                 <li><b>Hora</b></li>
@@ -247,11 +245,7 @@ $count3 = mysqli_fetch_assoc($check3);
                                 <li><b>Producto</b></li>
                                 <li><?php echo $row3["Producto"] ?></li>
                                 <li><b>Cantidad</b></li>
-                                <li><?php echo $row3["Cantidad"] ?> <?php if ($row3["Cantidad"] == 1) {
-                                                                        echo 'Panal';
-                                                                    } else {
-                                                                        echo 'Panales';
-                                                                    } ?></li>
+                                <li><?php echo $row3["Cantidad"] ?> <?php if ($row3["Cantidad"] == 1) {echo 'Panal';} else {echo 'Panales';} ?></li>
                                 <li><b>Fecha</b></li>
                                 <li><?php echo $row3["Fecha"] ?></li>
                                 <li><b>Hora</b></li>
@@ -267,13 +261,6 @@ $count3 = mysqli_fetch_assoc($check3);
     <script src="/hj/js/menu.js"></script>
     <script src="../../package/dist/sweetalert2.all.js"></script>
     <script src="../../package/dist/sweetalert2.all.min.js"></script>
-    <script>
-        const cop = new Intl.NumberFormat('es-CO', {
-            style: 'currency',
-            currency: 'COP',
-            minimumFractionDigits: 0
-        })
-    </script>
 </body>
 
 </html>
