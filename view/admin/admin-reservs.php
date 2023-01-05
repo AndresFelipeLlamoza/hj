@@ -146,8 +146,9 @@ $result = mysqli_query($conx, $query);
                             $ez = $row["Fecha"];
                             $ex = $row["Hora"];
 
-                            if ($hoy > $ez and $ahora > $ex) {
+                            if ($hoy > $ez && $ahora > $ex) {
                                 $zz=mysqli_query($conx,"UPDATE reservas SET Estado='Cancelado' WHERE idReserva='$id'");
+                                header("location:/hj/view/admin/admin-reservs.php");
                             }
                         ?>
                     <?php endwhile; ?>
